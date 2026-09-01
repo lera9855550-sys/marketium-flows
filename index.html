@@ -123,6 +123,21 @@ footer{margin-top:48px;padding:22px 0 52px;border-top:1px solid var(--line);
 .cp[data-state="sent"] .ok{display:flex}
 .cp[data-state="sent"] .fields,.cp[data-state="sent"] .row{display:none}
 
+
+.card{cursor:default;overflow:visible;position:relative}
+.card:hover,.card:focus-visible{transform:none}
+.shot{position:relative}
+.shot img{cursor:crosshair}
+.shot .zoom{position:absolute;top:8px;right:8px;z-index:3;width:30px;height:30px;border:0;border-radius:8px;
+ background:rgba(11,19,43,.7);color:#fff;font-size:15px;line-height:1;cursor:pointer;opacity:0;transition:opacity .15s;backdrop-filter:blur(4px)}
+.shot .ph{position:absolute;left:8px;right:44px;bottom:8px;z-index:3;font-size:11px;font-weight:600;color:#fff;
+ background:rgba(11,19,43,.7);padding:5px 8px;border-radius:8px;opacity:0;transition:opacity .15s;pointer-events:none;
+ backdrop-filter:blur(4px);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.shot:hover .zoom,.shot:hover .ph{opacity:1}
+.shot .zoom:hover{background:var(--accent)}
+figcaption{cursor:zoom-in}
+.shot .pin{width:20px;height:20px;margin:-20px 0 0 -10px}
+.shot .pin i{font-size:9px}
 .lb .stage{position:relative;display:inline-block;line-height:0}
 .lb .stage img{cursor:crosshair}
 .lb .tip{position:fixed;top:22px;left:20px;color:#F1F5FC;font-size:13px;opacity:.75;pointer-events:none;
@@ -404,12 +419,11 @@ const lb=document.getElementById('lb'),bi=document.getElementById('bi'),
 const cards=[...document.querySelectorAll('.card')];let i=-1;
 function show(k){if(k<0||k>=cards.length)return;i=k;const c=cards[k];
  bi.src=c.dataset.src;bi.alt=c.dataset.label;bl.textContent=c.dataset.label;
- bn.textContent=c.dataset.note;br.textContent=c.dataset.route;lb.setAttribute('open','');openedAt=Date.now();clearStage();renderMine();}
-function hide(){clearStage();lb.removeAttribute('open');bi.src='';if(i>-1)cards[i].focus();}
-cards.forEach((c,k)=>{c.addEventListener('click',()=>show(k));
- c.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();show(k);}});});
+ bn.textContent=c.dataset.note;br.textContent=c.dataset.route;lb.setAttribute('open','');openedAt=Date.now();clearTemp();stage.querySelectorAll('.pin').forEach(n=>n.remove());renderMine(stage,c.dataset.route);}
+function hide(){clearTemp();lb.removeAttribute('open');bi.src='';if(i>-1)cards[i].focus();}
+cards.forEach((c,k)=>{c.addEventListener('keydown',e=>{if((e.key==='Enter'||e.key===' ')&&e.target===c){e.preventDefault();show(k);}});});
 document.getElementById('x').addEventListener('click',hide);
-let openedAt=0;lb.addEventListener('click',e=>{if(e.target!==lb||Date.now()-openedAt<900)return;if(pop){clearStage();renderMine();}else hide();});
+let openedAt=0;lb.addEventListener('click',e=>{if(e.target!==lb||Date.now()-openedAt<900)return;if(pop){clearTemp();}else hide();});
 document.addEventListener('keydown',e=>{if(!lb.hasAttribute('open'))return;
  if(e.key==='Escape')hide();
  if(e.key==='ArrowRight')show(Math.min(i+1,cards.length-1));
@@ -438,55 +452,67 @@ function openPanel(flow,screen){
  cp.setAttribute('open','');setTimeout(()=>ftext.focus(),60);}
 function closePanel(){cp.removeAttribute('open');}
 document.querySelectorAll('.flow .cbtn').forEach(b=>b.addEventListener('click',()=>openPanel(b.dataset.flow,'')));
-/* ---- піни на екрані ---- */
+/* ---- піни: на мініатюрі в сітці й на великому екрані ---- */
 const stage=document.getElementById('stage'),toast=document.getElementById('toast');
-let pop=null,pins=[];
+let pop=null;
 function loadPins(){try{return JSON.parse(localStorage.getItem('mk.pins')||'[]');}catch(e){return [];}}
-function savePin(p){try{const a=loadPins();a.push(p);localStorage.setItem('mk.pins',JSON.stringify(a.slice(-200)));}catch(e){}}
-function clearStage(){stage.querySelectorAll('.pin,.pop').forEach(n=>n.remove());pop=null;}
-function addPin(x,y,cls,n){const p=document.createElement('div');p.className='pin '+(cls||'');
- p.style.left=x+'%';p.style.top=y+'%';if(n)p.innerHTML='<i>'+n+'</i>';stage.appendChild(p);return p;}
-function renderMine(){const r=cards[i].dataset.route;loadPins().filter(p=>p.route===r).forEach((p,k)=>addPin(p.x,p.y,'mine',k+1));}
-function placePop(x,y){
- if(pop)pop.remove();
+function savePin(p){try{const a=loadPins();a.push(p);localStorage.setItem('mk.pins',JSON.stringify(a.slice(-300)));}catch(e){}}
+function clearTemp(){document.querySelectorAll('.pin.tmp,.pop').forEach(n=>n.remove());pop=null;}
+function addPin(host,x,y,cls,n){const p=document.createElement('div');p.className='pin '+(cls||'');
+ p.style.left=x+'%';p.style.top=y+'%';if(n)p.innerHTML='<i>'+n+'</i>';host.appendChild(p);return p;}
+function renderMine(host,route){host.querySelectorAll('.pin.mine').forEach(n=>n.remove());
+ loadPins().filter(p=>p.route===route).forEach((p,k)=>addPin(host,p.x,p.y,'mine',k+1));}
+function renderAllMine(){cards.forEach(c=>renderMine(c.querySelector('.shot'),c.dataset.route));
+ if(i>-1)renderMine(stage,cards[i].dataset.route);}
+function placePop(host,anchor,card,x,y){
+ clearTemp();addPin(host,x,y,'tmp');
  pop=document.createElement('div');pop.className='pop';
  pop.innerHTML='<textarea placeholder="Що тут не так або що варто змінити?"></textarea>'+
-  '<div class="r"><input placeholder="Ваше імʼя" value=""><button class="go">Надіслати</button></div>'+
+  '<div class="r"><input placeholder="Ваше імʼя"><button class="go">Надіслати</button></div>'+
   '<div class="k"><kbd>⌘</kbd>+<kbd>Enter</kbd> — надіслати · <kbd>Esc</kbd> — скасувати</div>';
  const ta=pop.querySelector('textarea'),nm=pop.querySelector('input'),go=pop.querySelector('.go');
  try{nm.value=localStorage.getItem('mk.name')||'';}catch(e){}
- const R=stage.getBoundingClientRect();
- const left=x>55?'auto':'calc('+x+'% + 16px)',right=x>55?'calc('+(100-x)+'% + 16px)':'auto';
- pop.style.left=left;pop.style.right=right;
- pop.style.top='min(calc('+y+'% - 20px), '+(R.height-190)+'px)';
- stage.appendChild(pop);setTimeout(()=>ta.focus(),30);
- const send=()=>{const t=ta.value.trim();if(!t)return;go.disabled=true;
-  const c=cards[i];try{localStorage.setItem('mk.name',nm.value);}catch(e){}
-  const link=location.origin+location.pathname+'#'+c.dataset.route+'@'+x.toFixed(1)+','+y.toFixed(1);
-  post({flow:flowOf(c),screen:c.dataset.label+' ('+c.dataset.route+') · пін '+x.toFixed(0)+'%,'+y.toFixed(0)+'%',
+ const R=host.getBoundingClientRect(),px=R.width*x/100,py=R.height*y/100;
+ if(innerWidth-(R.left+px)<330)pop.style.right=(R.width-px+14)+'px';else pop.style.left=(px+14)+'px';
+ pop.style.top=Math.max(0,Math.min(py-22,R.height-200))+'px';
+ anchor.appendChild(pop);setTimeout(()=>ta.focus(),30);
+ const send=()=>{const t=ta.value.trim();if(!t){ta.focus();return;}go.disabled=true;
+  try{localStorage.setItem('mk.name',nm.value);}catch(e){}
+  const link=location.origin+location.pathname+'#'+card.dataset.route+'@'+x.toFixed(1)+','+y.toFixed(1);
+  post({flow:flowOf(card),screen:card.dataset.label+' ('+card.dataset.route+') · пін '+x.toFixed(0)+'%,'+y.toFixed(0)+'%',
    name:nm.value.trim()||'Анонім',text:t,page:link},()=>{
-   savePin({route:c.dataset.route,x,y,t:Date.now()});
-   clearStage();renderMine();
+   savePin({route:card.dataset.route,x,y,t:Date.now()});clearTemp();renderAllMine();
    toast.classList.add('on');setTimeout(()=>toast.classList.remove('on'),1800);});};
  go.addEventListener('click',send);
  ta.addEventListener('keydown',e=>{if((e.metaKey||e.ctrlKey)&&e.key==='Enter'){e.preventDefault();send();}
-  if(e.key==='Escape'){e.stopPropagation();clearStage();renderMine();}});
+  if(e.key==='Escape'){e.stopPropagation();clearTemp();}});
  pop.addEventListener('click',e=>e.stopPropagation());
 }
-bi.addEventListener('click',e=>{
- if(!FORM.action){openPanel(flowOf(cards[i]),cards[i].dataset.label+' ('+cards[i].dataset.route+')');return;}
- const r=bi.getBoundingClientRect();
+function pinAt(e,img,host,anchor,card){
+ const r=img.getBoundingClientRect();
  const x=Math.max(0,Math.min(100,(e.clientX-r.left)/r.width*100)),y=Math.max(0,Math.min(100,(e.clientY-r.top)/r.height*100));
- clearStage();renderMine();addPin(x,y,'');placePop(x,y);e.stopPropagation();});
+ placePop(host,anchor,card,x,y);}
+/* мініатюри: клік — пін, кнопка ⤢ / Enter — великий перегляд */
+cards.forEach((c,k)=>{const shot=c.querySelector('.shot'),img=shot.querySelector('img');
+ const z=document.createElement('button');z.className='zoom';z.type='button';z.title='Відкрити великим';z.textContent='⤢';
+ z.addEventListener('click',e=>{e.stopPropagation();show(k);});shot.appendChild(z);
+ const hint=document.createElement('span');hint.className='ph';hint.textContent='Клік — коментар тут';shot.appendChild(hint);
+ img.addEventListener('click',e=>{e.stopPropagation();if(!FORM.action){openPanel(flowOf(c),c.dataset.label+' ('+c.dataset.route+')');return;}pinAt(e,img,shot,c,c);});
+ c.querySelector('figcaption').addEventListener('click',e=>{e.stopPropagation();show(k);});});
+bi.addEventListener('click',e=>{e.stopPropagation();
+ if(!FORM.action){openPanel(flowOf(cards[i]),cards[i].dataset.label+' ('+cards[i].dataset.route+')');return;}
+ pinAt(e,bi,stage,stage,cards[i]);});
+document.addEventListener('click',e=>{if(pop&&!e.target.closest('.pop'))clearTemp();});
 function post(d,done){
  const f=document.createElement('form');f.method='POST';f.action=FORM.action;f.target='gsink';f.hidden=true;
  const m={[FORM.fields.flow]:d.flow,[FORM.fields.screen]:d.screen,[FORM.fields.name]:d.name,[FORM.fields.text]:d.text,[FORM.fields.page]:d.page};
  for(const k in m){const inp=document.createElement('input');inp.name=k;inp.value=m[k];f.appendChild(inp);}
  document.body.appendChild(f);f.submit();setTimeout(()=>{f.remove();done&&done();},600);}
+renderAllMine();
 /* deep link: #route@x,y */
 (function(){const m=location.hash.match(/^#([A-Za-z0-9_]+)@([\d.]+),([\d.]+)$/);if(!m)return;
  const k=cards.findIndex(c=>c.dataset.route===m[1]);if(k<0)return;
- show(k);setTimeout(()=>{clearStage();addPin(+m[2],+m[3],'sent','!');},80);})();
+ show(k);setTimeout(()=>{addPin(stage,+m[2],+m[3],'sent','!');},80);})();
 document.getElementById('cpx').addEventListener('click',closePanel);
 document.getElementById('cpc').addEventListener('click',closePanel);
 document.getElementById('again').addEventListener('click',()=>{ftext.value='';cp.removeAttribute('data-state');ftext.focus();});
