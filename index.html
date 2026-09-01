@@ -88,60 +88,31 @@ footer{margin-top:48px;padding:22px 0 52px;border-top:1px solid var(--line);
 .lb #x{position:fixed;top:16px;right:18px;width:38px;height:38px;border:0;border-radius:50%;
  background:rgba(255,255,255,.14);color:#fff;font-size:18px;cursor:pointer}
 
-.cbtn{font:inherit;font-size:12.5px;font-weight:600;color:var(--accent);background:var(--surface);
- border:1px solid var(--line);border-radius:20px;padding:5px 12px;cursor:pointer;white-space:nowrap;
- transition:background .15s,transform .15s}
-.cbtn:hover{background:var(--raise);transform:translateY(-1px)}
-.lb .cbtn{position:fixed;top:16px;left:18px;font-size:13px;padding:8px 14px;background:rgba(255,255,255,.14);
- color:#fff;border-color:transparent;backdrop-filter:blur(4px)}
-.lb .cbtn:hover{background:rgba(255,255,255,.24)}
-.cp{position:fixed;inset:0;z-index:80;display:none;background:rgba(4,8,20,.55);backdrop-filter:blur(4px)}
-.cp[open]{display:block}
-.cp form{position:absolute;right:0;top:0;bottom:0;width:min(440px,100vw);background:var(--surface);
- color:var(--text);padding:28px 26px;display:flex;flex-direction:column;gap:14px;overflow:auto;
- box-shadow:-20px 0 60px rgba(0,0,0,.35);animation:slide .22s ease-out}
-@keyframes slide{from{transform:translateX(40px);opacity:0}to{transform:none;opacity:1}}
-.cp h3{font-family:Unbounded,sans-serif;font-weight:500;font-size:18px;margin:0 30px 0 0}
-.cp .ctx{display:flex;flex-wrap:wrap;gap:6px;font-size:12.5px}
-.cp .ctx span{background:var(--raise);border:1px solid var(--line);border-radius:20px;padding:4px 10px}
-.cp .ctx span b{color:var(--accent);font-weight:600;margin-right:4px}
-.cp label{display:flex;flex-direction:column;gap:6px;font-size:12.5px;color:var(--muted);font-weight:600}
-.cp input,.cp textarea,.cp select{font:inherit;font-size:14.5px;color:var(--text);background:var(--raise);
- border:1px solid var(--line);border-radius:10px;padding:10px 12px;outline:none;width:100%}
-.cp input:focus,.cp textarea:focus,.cp select:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(27,103,245,.15)}
-.cp textarea{min-height:150px;resize:vertical;line-height:1.5}
-.cp .row{display:flex;gap:10px;align-items:center;margin-top:auto;padding-top:6px}
-.cp .send{font:inherit;font-weight:600;font-size:14.5px;color:#fff;background:var(--accent);border:0;
- border-radius:12px;padding:12px 20px;cursor:pointer;flex:1}
-.cp .send:disabled{opacity:.55;cursor:default}
-.cp .cancel{font:inherit;font-size:14px;color:var(--muted);background:none;border:0;cursor:pointer;padding:12px 8px}
-.cp .x{position:absolute;top:22px;right:20px;width:34px;height:34px;border:0;border-radius:50%;
- background:var(--raise);color:var(--text);font-size:16px;cursor:pointer}
-.cp .ok{display:none;flex-direction:column;gap:10px;align-items:flex-start;padding:14px 16px;border-radius:12px;
- background:rgba(27,103,245,.08);border:1px solid var(--accent);font-size:14px;line-height:1.5}
-.cp .ok b{font-weight:600}
-.cp[data-state="sent"] .ok{display:flex}
-.cp[data-state="sent"] .fields,.cp[data-state="sent"] .row{display:none}
+/* --- банер-підказка --- */
+.howto{display:flex;gap:14px;align-items:flex-start;margin-top:22px;padding:16px 18px;border-radius:14px;
+ background:linear-gradient(135deg,rgba(27,103,245,.14),rgba(234,130,160,.12));border:1px solid rgba(27,103,245,.35);max-width:74ch}
+.howto .ic{flex:none;width:40px;height:40px;border-radius:12px;background:var(--accent);color:#fff;display:grid;place-items:center;box-shadow:0 6px 16px rgba(27,103,245,.35)}
+.howto div{display:flex;flex-direction:column;gap:4px;line-height:1.5}
+.howto b{font-size:15.5px;font-weight:600}
+.howto span{font-size:13.5px;color:var(--muted)}
 
-
+/* --- мініатюри: курсор-коментар, ховер, кнопка ⤢ --- */
 .card{cursor:default;overflow:visible;position:relative}
 .card:hover,.card:focus-visible{transform:none}
 .shot{position:relative}
-.shot img{cursor:crosshair}
+.shot img{cursor:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='34' height='34' viewBox='0 0 34 34'><path d='M6 8.5A3.5 3.5 0 0 1 9.5 5h15A3.5 3.5 0 0 1 28 8.5v11a3.5 3.5 0 0 1-3.5 3.5H15l-6.2 5.3c-1 .9-2.8.2-2.8-1.2V8.5Z' fill='%231B67F5' stroke='white' stroke-width='2'/><path d='M17 9.5v8M13 13.5h8' stroke='white' stroke-width='2.4' stroke-linecap='round'/></svg>") 6 30, crosshair;transition:filter .15s}
+.shot:hover img{filter:brightness(.8)}
 .shot .zoom{position:absolute;top:8px;right:8px;z-index:3;width:30px;height:30px;border:0;border-radius:8px;
- background:rgba(11,19,43,.7);color:#fff;font-size:15px;line-height:1;cursor:pointer;opacity:0;transition:opacity .15s;backdrop-filter:blur(4px)}
-.shot .ph{position:absolute;left:8px;right:44px;bottom:8px;z-index:3;font-size:11px;font-weight:600;color:#fff;
- background:rgba(11,19,43,.7);padding:5px 8px;border-radius:8px;opacity:0;transition:opacity .15s;pointer-events:none;
- backdrop-filter:blur(4px);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.shot:hover .zoom,.shot:hover .ph{opacity:1}
+ background:rgba(11,19,43,.72);color:#fff;font-size:15px;line-height:1;cursor:pointer;opacity:0;transition:opacity .15s;backdrop-filter:blur(4px)}
 .shot .zoom:hover{background:var(--accent)}
+.shot .ph{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:3;font-size:12px;font-weight:600;color:#fff;
+ background:var(--accent);padding:8px 12px;border-radius:20px;opacity:0;transition:opacity .15s;pointer-events:none;
+ box-shadow:0 8px 24px rgba(11,19,43,.45);white-space:nowrap;display:flex;align-items:center;gap:6px}
+.shot .ph svg{width:16px;height:16px;flex:none}
+.shot:hover .zoom,.shot:hover .ph{opacity:1}
 figcaption{cursor:zoom-in}
-.shot .pin{width:20px;height:20px;margin:-20px 0 0 -10px}
-.shot .pin i{font-size:9px}
-.lb .stage{position:relative;display:inline-block;line-height:0}
-.lb .stage img{cursor:crosshair}
-.lb .tip{position:fixed;top:22px;left:20px;color:#F1F5FC;font-size:13px;opacity:.75;pointer-events:none;
- background:rgba(255,255,255,.1);padding:8px 12px;border-radius:20px;backdrop-filter:blur(4px)}
+
+/* --- піни й поповер --- */
 .pin{position:absolute;width:26px;height:26px;margin:-26px 0 0 -13px;border-radius:50% 50% 50% 0;
  transform:rotate(-45deg);background:var(--accent);border:2px solid #fff;box-shadow:0 4px 12px rgba(0,0,0,.45);
  z-index:2;pointer-events:none;animation:drop .18s ease-out}
@@ -149,12 +120,15 @@ figcaption{cursor:zoom-in}
  font:600 11px/1 "Exo 2",sans-serif;color:#fff;font-style:normal}
 .pin.sent{background:#1FB067}
 .pin.mine{background:#F59E0B}
+.shot .pin{width:20px;height:20px;margin:-20px 0 0 -10px}
+.shot .pin i{font-size:9px}
 @keyframes drop{from{transform:rotate(-45deg) translateY(-10px);opacity:0}to{transform:rotate(-45deg);opacity:1}}
-.pop{position:absolute;z-index:3;width:min(292px,86vw);background:var(--surface);color:var(--text);
+@keyframes slide{from{transform:translateX(12px);opacity:0}to{transform:none;opacity:1}}
+.pop{position:absolute;z-index:30;width:min(292px,86vw);background:var(--surface);color:var(--text);
  border-radius:14px;box-shadow:0 18px 50px rgba(0,0,0,.5);padding:12px;display:flex;flex-direction:column;gap:8px;
- animation:slide .16s ease-out;line-height:normal}
+ animation:slide .16s ease-out;line-height:normal;cursor:default}
 .pop textarea{font:inherit;font-size:14px;color:var(--text);background:var(--raise);border:1px solid var(--line);
- border-radius:10px;padding:9px 11px;min-height:78px;resize:none;outline:none;width:100%;line-height:1.45}
+ border-radius:10px;padding:9px 11px;min-height:78px;resize:none;outline:none;width:100%;line-height:1.45;box-sizing:border-box}
 .pop textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(27,103,245,.15)}
 .pop .r{display:flex;gap:8px;align-items:center}
 .pop input{font:inherit;font-size:12.5px;color:var(--text);background:var(--raise);border:1px solid var(--line);
@@ -169,8 +143,12 @@ figcaption{cursor:zoom-in}
  font-weight:600;font-size:13.5px;padding:10px 16px;border-radius:20px;box-shadow:0 10px 30px rgba(0,0,0,.35);
  opacity:0;pointer-events:none;transition:opacity .2s}
 .toast.on{opacity:1}
-.cp .warn{font-size:12.5px;color:var(--muted);line-height:1.5;padding:10px 12px;border-radius:10px;
- background:var(--raise);border:1px dashed var(--line)}
+
+/* --- великий перегляд --- */
+.lb .stage{position:relative;display:inline-block;line-height:0}
+.lb .stage img{cursor:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='34' height='34' viewBox='0 0 34 34'><path d='M6 8.5A3.5 3.5 0 0 1 9.5 5h15A3.5 3.5 0 0 1 28 8.5v11a3.5 3.5 0 0 1-3.5 3.5H15l-6.2 5.3c-1 .9-2.8.2-2.8-1.2V8.5Z' fill='%231B67F5' stroke='white' stroke-width='2'/><path d='M17 9.5v8M13 13.5h8' stroke='white' stroke-width='2.4' stroke-linecap='round'/></svg>") 6 30, crosshair}
+.lb .tip{position:fixed;top:22px;left:20px;color:#F1F5FC;font-size:13px;opacity:.75;pointer-events:none;
+ background:rgba(255,255,255,.1);padding:8px 12px;border-radius:20px;backdrop-filter:blur(4px)}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
 </head>
@@ -186,7 +164,7 @@ figcaption{cursor:zoom-in}
 <span><b>48</b> екранів</span><span><b>6</b> флоу</span>
 <span>iPhone 16 · 393×852</span><span>SwiftUI · iOS</span>
 </div>
-<p class="hint"><b>Як залишити коментар:</b> відкрий екран і клікни на те місце, про яке хочеш сказати — зʼявиться пін і поле для тексту. Коментар одразу зберігається в таблицю команди, логін не потрібен. Про флоу загалом — кнопка «Коментувати» біля його назви. Стрілки ← → гортають екрани.</p>
+<div class="howto"><span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3h11A2.5 2.5 0 0 1 20 5.5v8a2.5 2.5 0 0 1-2.5 2.5H10l-4.2 3.6c-.7.6-1.8.1-1.8-.8V5.5Z" fill="currentColor"/><path d="M12 6.5v6M9 9.5h6" stroke="#fff" stroke-width="1.8" stroke-linecap="round"/></svg></span><div><b>Щоб лишити коментар — просто клікни на екран.</b><span>У тому місці зʼявиться пін і поле для тексту. Пиши, тисни «Надіслати» — коментар одразу потрапляє в таблицю команди. Без реєстрації.</span></div></div>
 </header>
 </div>
 
@@ -195,7 +173,7 @@ figcaption{cursor:zoom-in}
 <div class="wrap">
 <section class="flow" id="fA">
 <header class="fh">
-<div class="fh-top"><span class="code">A</span><h2>Гра на одному пристрої</h2><span class="count">11</span><button class="cbtn" data-flow="A · Гра на одному пристрої">Коментувати</button></div>
+<div class="fh-top"><span class="code">A</span><h2>Гра на одному пристрої</h2><span class="count">11</span></div>
 <p class="blurb">Класичний Alias: телефон передають по колу. Сім кроків від вибору способу гри до першого раунду.</p>
 <p class="path">playStyle → gameMode → participantCount → teamList → setList → gameSettings → getReady</p>
 </header>
@@ -235,7 +213,7 @@ figcaption{cursor:zoom-in}
 </figure></div>
 </section><section class="flow" id="fB">
 <header class="fh">
-<div class="fh-top"><span class="code">B</span><h2>Кімната (кілька пристроїв)</h2><span class="count">8</span><button class="cbtn" data-flow="B · Кімната (кілька пристроїв)">Коментувати</button></div>
+<div class="fh-top"><span class="code">B</span><h2>Кімната (кілька пристроїв)</h2><span class="count">8</span></div>
 <p class="blurb">Мультиплеєр: організатор створює кімнату й показує код, гості заходять за ним і отримують ролі. Транспорт між пристроями поки мок — приєднання й старт раунду імітуються таймерами.</p>
 <p class="path">організатор: createRoom → сетап як у A  ·  гість: joinRoom → roomLobby → roomRole → roomGuessing</p>
 </header>
@@ -266,7 +244,7 @@ figcaption{cursor:zoom-in}
 </figure></div>
 </section><section class="flow" id="fC">
 <header class="fh">
-<div class="fh-top"><span class="code">C</span><h2>Ігровий цикл</h2><span class="count">11</span><button class="cbtn" data-flow="C · Ігровий цикл">Коментувати</button></div>
+<div class="fh-top"><span class="code">C</span><h2>Ігровий цикл</h2><span class="count">11</span></div>
 <p class="blurb">Серце застосунку. Цикл крутиться замінами верхнього екрана, тож стек не росте за десятки раундів і «назад» не веде в уже зарахований раунд. Очки нараховуються лише на підсумку по «Далі» — це дозволяє виправити спірні слова, не віднімаючи вже нараховані бали.</p>
 <p class="path">getReady → gameplay → roundResults → getReady / ranking / win</p>
 </header>
@@ -306,7 +284,7 @@ figcaption{cursor:zoom-in}
 </figure></div>
 </section><section class="flow" id="fD">
 <header class="fh">
-<div class="fh-top"><span class="code">D</span><h2>Словник</h2><span class="count">4</span><button class="cbtn" data-flow="D · Словник">Коментувати</button></div>
+<div class="fh-top"><span class="code">D</span><h2>Словник</h2><span class="count">4</span></div>
 <p class="blurb">Слова, збережені під час гри. Флешкартки збирають колоду лише з невивчених і фіксують її на вході. Якщо вивчено все — береться повний словник як режим повторення.</p>
 <p class="path">savedWords → savedWordCards</p>
 </header>
@@ -325,7 +303,7 @@ figcaption{cursor:zoom-in}
 </figure></div>
 </section><section class="flow" id="fE">
 <header class="fh">
-<div class="fh-top"><span class="code">E</span><h2>Монетизація</h2><span class="count">6</span><button class="cbtn" data-flow="E · Монетизація">Коментувати</button></div>
+<div class="fh-top"><span class="code">E</span><h2>Монетизація</h2><span class="count">6</span></div>
 <p class="blurb">Пейвол викликається з двох місць — із загального «Повний доступ» і з конкретного заблокованого набору — і має чотири стани. Продукти описані в конфігурації, але в App Store Connect не заведені.</p>
 <p class="path">setList / setDetail → paywall</p>
 </header>
@@ -350,7 +328,7 @@ figcaption{cursor:zoom-in}
 </figure></div>
 </section><section class="flow" id="fF">
 <header class="fh">
-<div class="fh-top"><span class="code">F</span><h2>Службові екрани</h2><span class="count">8</span><button class="cbtn" data-flow="F · Службові екрани">Коментувати</button></div>
+<div class="fh-top"><span class="code">F</span><h2>Службові екрани</h2><span class="count">8</span></div>
 <p class="blurb">Поза ігровими флоу: запуск, головна в різних станах, правила, налаштування й каталог дизайн-системи для розробки.</p>
 <p class="path">launch → main · rules · appSettings</p>
 </header>
@@ -394,25 +372,8 @@ figcaption{cursor:zoom-in}
 <div class="cap"><span id="bl"></span><i id="bn"></i><u id="br"></u></div>
 </div>
 
-
-<div class="cp" id="cp" role="dialog" aria-modal="true" aria-label="Коментар">
-<form id="cf" autocomplete="off">
-<button type="button" class="x" id="cpx" aria-label="Закрити">✕</button>
-<h3>Коментар</h3>
-<div class="ctx" id="ctx"></div>
-<div class="fields" style="display:contents">
-<label>Екран (необовʼязково)<select id="fscreen"><option value="">— увесь флоу —</option></select></label>
-<label>Ваше імʼя<input id="fname" placeholder="Щоб ми знали, від кого"></label>
-<label>Коментар<textarea id="ftext" required placeholder="Що незрозуміло, що заважає, що варто змінити…"></textarea></label>
-<p class="warn" id="fwarn" hidden>Таблицю коментарів ще не підключено — коментар нікуди не піде. Напишіть Лері напряму.</p>
-</div>
-<div class="ok"><b>Надіслано, дякуємо!</b><span>Коментар уже в таблиці. Можна лишити ще один.</span>
-<button type="button" class="cbtn" id="again">Ще коментар</button></div>
-<div class="row"><button type="button" class="cancel" id="cpc">Скасувати</button><button type="submit" class="send" id="fsend">Надіслати</button></div>
-</form>
 <iframe name="gsink" id="gsink" hidden></iframe>
-</div>
-
+<div class="toast" id="toast">Надіслано ✓</div>
 <script>
 const lb=document.getElementById('lb'),bi=document.getElementById('bi'),
  bl=document.getElementById('bl'),bn=document.getElementById('bn'),br=document.getElementById('br');
@@ -432,26 +393,8 @@ document.addEventListener('keydown',e=>{if(!lb.hasAttribute('open'))return;
 /* ---- коментарі → Google Форма ---- */
 const FORM = {action:"https://docs.google.com/forms/d/e/1FAIpQLSdb6rr0YpRbBvo61Z0i27g1ji4stae7m83E0QHX2GvXupme4A/formResponse",
  fields:{flow:"entry.1912946041",screen:"entry.663859537",name:"entry.201122895",text:"entry.808053430",page:"entry.1596894630"}};
-const cp=document.getElementById('cp'),cf=document.getElementById('cf'),ctx=document.getElementById('ctx'),
- fscreen=document.getElementById('fscreen'),fname=document.getElementById('fname'),ftext=document.getElementById('ftext'),
- fwarn=document.getElementById('fwarn'),fsend=document.getElementById('fsend');
-let cur={flow:'',screen:''};
-try{fname.value=localStorage.getItem('mk.name')||'';}catch(e){}
-function flowOf(el){const s=el.closest('section.flow');if(!s)return '';
- const b=s.querySelector('.cbtn');return b?b.dataset.flow:'';}
-function openPanel(flow,screen){
- cur={flow,screen:screen||''};
- cp.removeAttribute('data-state');
- ctx.innerHTML='<span><b>Флоу</b>'+flow+'</span>'+(screen?'<span><b>Екран</b>'+screen+'</span>':'');
- fscreen.innerHTML='<option value="">— увесь флоу —</option>';
- const code=flow.split(' ')[0];
- cards.filter(c=>flowOf(c).startsWith(code)).forEach(c=>{const o=document.createElement('option');
-  o.value=c.dataset.label+' ('+c.dataset.route+')';o.textContent=c.dataset.label;
-  if(screen&&screen.startsWith(c.dataset.label))o.selected=true;fscreen.appendChild(o);});
- fwarn.hidden=!!FORM.action;
- cp.setAttribute('open','');setTimeout(()=>ftext.focus(),60);}
-function closePanel(){cp.removeAttribute('open');}
-document.querySelectorAll('.flow .cbtn').forEach(b=>b.addEventListener('click',()=>openPanel(b.dataset.flow,'')));
+function flowOf(el){const sec=el.closest('section.flow');if(!sec)return '';
+ return sec.querySelector('.code').textContent+' · '+sec.querySelector('h2').textContent;}
 /* ---- піни: на мініатюрі в сітці й на великому екрані ---- */
 const stage=document.getElementById('stage'),toast=document.getElementById('toast');
 let pop=null;
@@ -496,12 +439,11 @@ function pinAt(e,img,host,anchor,card){
 cards.forEach((c,k)=>{const shot=c.querySelector('.shot'),img=shot.querySelector('img');
  const z=document.createElement('button');z.className='zoom';z.type='button';z.title='Відкрити великим';z.textContent='⤢';
  z.addEventListener('click',e=>{e.stopPropagation();show(k);});shot.appendChild(z);
- const hint=document.createElement('span');hint.className='ph';hint.textContent='Клік — коментар тут';shot.appendChild(hint);
- img.addEventListener('click',e=>{e.stopPropagation();if(!FORM.action){openPanel(flowOf(c),c.dataset.label+' ('+c.dataset.route+')');return;}pinAt(e,img,shot,c,c);});
+ const hint=document.createElement('span');hint.className='ph';hint.innerHTML='<svg viewBox="0 0 24 24" fill="none"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3h11A2.5 2.5 0 0 1 20 5.5v8a2.5 2.5 0 0 1-2.5 2.5H10l-4.2 3.6c-.7.6-1.8.1-1.8-.8V5.5Z" fill="#fff"/><path d="M12 6.5v6M9 9.5h6" stroke="#1B67F5" stroke-width="1.8" stroke-linecap="round"/></svg>Коментар тут';shot.appendChild(hint);
+ img.addEventListener('click',e=>{e.stopPropagation();pinAt(e,img,shot,c,c);});
  c.querySelector('figcaption').addEventListener('click',e=>{e.stopPropagation();show(k);});});
 bi.addEventListener('click',e=>{e.stopPropagation();
- if(!FORM.action){openPanel(flowOf(cards[i]),cards[i].dataset.label+' ('+cards[i].dataset.route+')');return;}
- pinAt(e,bi,stage,stage,cards[i]);});
+  pinAt(e,bi,stage,stage,cards[i]);});
 document.addEventListener('click',e=>{if(pop&&!e.target.closest('.pop'))clearTemp();});
 function post(d,done){
  const f=document.createElement('form');f.method='POST';f.action=FORM.action;f.target='gsink';f.hidden=true;
@@ -513,25 +455,7 @@ renderAllMine();
 (function(){const m=location.hash.match(/^#([A-Za-z0-9_]+)@([\d.]+),([\d.]+)$/);if(!m)return;
  const k=cards.findIndex(c=>c.dataset.route===m[1]);if(k<0)return;
  show(k);setTimeout(()=>{addPin(stage,+m[2],+m[3],'sent','!');},80);})();
-document.getElementById('cpx').addEventListener('click',closePanel);
-document.getElementById('cpc').addEventListener('click',closePanel);
-document.getElementById('again').addEventListener('click',()=>{ftext.value='';cp.removeAttribute('data-state');ftext.focus();});
-cp.addEventListener('click',e=>{if(e.target===cp)closePanel();});
-document.addEventListener('keydown',e=>{if(e.key==='Escape'&&cp.hasAttribute('open'))closePanel();});
-cf.addEventListener('submit',e=>{
- e.preventDefault();
- if(!ftext.value.trim())return;
- if(!FORM.action){fwarn.hidden=false;return;}
- try{localStorage.setItem('mk.name',fname.value);}catch(err){}
- const f=document.createElement('form');f.method='POST';f.action=FORM.action;f.target='gsink';f.hidden=true;
- const data={[FORM.fields.flow]:cur.flow,[FORM.fields.screen]:fscreen.value,
-  [FORM.fields.name]:fname.value.trim()||'Анонім',[FORM.fields.text]:ftext.value.trim(),
-  [FORM.fields.page]:location.href.split('#')[0]};
- for(const k in data){if(!k)continue;const inp=document.createElement('input');inp.name=k;inp.value=data[k];f.appendChild(inp);}
- document.body.appendChild(f);fsend.disabled=true;
- f.submit();
- setTimeout(()=>{f.remove();fsend.disabled=false;cp.setAttribute('data-state','sent');},700);
-});
+
 </script>
 </body>
 </html>
