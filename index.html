@@ -111,6 +111,7 @@ footer{margin-top:48px;padding:22px 0 52px;border-top:1px solid var(--line);
 .shot .ph svg{width:16px;height:16px;flex:none}
 .shot:hover .zoom,.shot:hover .ph{opacity:1}
 figcaption{cursor:zoom-in}
+@media (hover:none){.shot .ph{display:none}.shot .zoom{opacity:.9}.shot:hover img{filter:none}}
 
 /* --- піни й поповер --- */
 .pin{position:absolute;width:26px;height:26px;margin:-26px 0 0 -13px;border-radius:50% 50% 50% 0;
@@ -127,6 +128,7 @@ figcaption{cursor:zoom-in}
 .pop{position:absolute;z-index:30;width:min(292px,86vw);background:var(--surface);color:var(--text);
  border-radius:14px;box-shadow:0 18px 50px rgba(0,0,0,.5);padding:12px;display:flex;flex-direction:column;gap:8px;
  animation:slide .16s ease-out;line-height:normal;cursor:default}
+.pop.wide{width:min(340px,calc(100vw - 16px))}
 .pop textarea{font:inherit;font-size:14px;color:var(--text);background:var(--raise);border:1px solid var(--line);
  border-radius:10px;padding:9px 11px;min-height:78px;resize:none;outline:none;width:100%;line-height:1.45;box-sizing:border-box}
 .pop textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(27,103,245,.15)}
@@ -385,7 +387,7 @@ function hide(){clearTemp();lb.removeAttribute('open');bi.src='';if(i>-1)cards[i
 cards.forEach((c,k)=>{c.addEventListener('keydown',e=>{if((e.key==='Enter'||e.key===' ')&&e.target===c){e.preventDefault();show(k);}});});
 document.getElementById('x').addEventListener('click',hide);
 let openedAt=0;lb.addEventListener('click',e=>{if(e.target!==lb||Date.now()-openedAt<900)return;if(pop){clearTemp();}else hide();});
-document.addEventListener('keydown',e=>{if(!lb.hasAttribute('open'))return;
+document.addEventListener('keydown',e=>{if(!lb.hasAttribute('open'))return;if(e.target.matches('textarea,input'))return;
  if(e.key==='Escape')hide();
  if(e.key==='ArrowRight')show(Math.min(i+1,cards.length-1));
  if(e.key==='ArrowLeft')show(Math.max(i-1,0));});
@@ -416,8 +418,12 @@ function placePop(host,anchor,card,x,y){
  const ta=pop.querySelector('textarea'),nm=pop.querySelector('input'),go=pop.querySelector('.go');
  try{nm.value=localStorage.getItem('mk.name')||'';}catch(e){}
  const R=host.getBoundingClientRect(),px=R.width*x/100,py=R.height*y/100;
- if(innerWidth-(R.left+px)<330)pop.style.right=(R.width-px+14)+'px';else pop.style.left=(px+14)+'px';
- pop.style.top=Math.max(0,Math.min(py-22,R.height-200))+'px';
+ if(innerWidth<600){pop.classList.add('wide');
+  const left=Math.max(8-R.left, Math.min(R.left+R.width-8, innerWidth-8)-R.left-Math.min(innerWidth-16,340));
+  pop.style.left=Math.round(Math.max(8-R.left, Math.min(px-160, innerWidth-8-340-R.left)))+'px';
+  pop.style.top=(py+18)+'px';}
+ else{if(innerWidth-(R.left+px)<330)pop.style.right=(R.width-px+14)+'px';else pop.style.left=(px+14)+'px';
+  pop.style.top=Math.max(0,Math.min(py-22,R.height-200))+'px';}
  anchor.appendChild(pop);setTimeout(()=>ta.focus(),30);
  const send=()=>{const t=ta.value.trim();if(!t){ta.focus();return;}go.disabled=true;
   try{localStorage.setItem('mk.name',nm.value);}catch(e){}
@@ -448,7 +454,7 @@ document.addEventListener('click',e=>{if(pop&&!e.target.closest('.pop'))clearTem
 function post(d,done){
  const f=document.createElement('form');f.method='POST';f.action=FORM.action;f.target='gsink';f.hidden=true;
  const m={[FORM.fields.flow]:d.flow,[FORM.fields.screen]:d.screen,[FORM.fields.name]:d.name,[FORM.fields.text]:d.text,[FORM.fields.page]:d.page};
- for(const k in m){const inp=document.createElement('input');inp.name=k;inp.value=m[k];f.appendChild(inp);}
+ for(const k in m){const inp=document.createElement('textarea');inp.name=k;inp.value=m[k];f.appendChild(inp);}
  document.body.appendChild(f);f.submit();setTimeout(()=>{f.remove();done&&done();},600);}
 renderAllMine();
 /* deep link: #route@x,y */
