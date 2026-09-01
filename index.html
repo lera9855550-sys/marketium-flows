@@ -85,7 +85,7 @@ footer{margin-top:48px;padding:22px 0 52px;border-top:1px solid var(--line);
  font-size:13.5px;display:flex;flex-direction:column;gap:3px;padding:0 20px}
 .lb .cap i{font-style:normal;font-size:12px;opacity:.72}
 .lb .cap u{text-decoration:none;font-family:ui-monospace,Menlo,monospace;font-size:11px;opacity:.5}
-.lb button{position:fixed;top:16px;right:18px;width:38px;height:38px;border:0;border-radius:50%;
+.lb #x{position:fixed;top:16px;right:18px;width:38px;height:38px;border:0;border-radius:50%;
  background:rgba(255,255,255,.14);color:#fff;font-size:18px;cursor:pointer}
 
 .cbtn{font:inherit;font-size:12.5px;font-weight:600;color:var(--accent);background:var(--surface);
@@ -122,6 +122,38 @@ footer{margin-top:48px;padding:22px 0 52px;border-top:1px solid var(--line);
 .cp .ok b{font-weight:600}
 .cp[data-state="sent"] .ok{display:flex}
 .cp[data-state="sent"] .fields,.cp[data-state="sent"] .row{display:none}
+
+.lb .stage{position:relative;display:inline-block;line-height:0}
+.lb .stage img{cursor:crosshair}
+.lb .tip{position:fixed;top:22px;left:20px;color:#F1F5FC;font-size:13px;opacity:.75;pointer-events:none;
+ background:rgba(255,255,255,.1);padding:8px 12px;border-radius:20px;backdrop-filter:blur(4px)}
+.pin{position:absolute;width:26px;height:26px;margin:-26px 0 0 -13px;border-radius:50% 50% 50% 0;
+ transform:rotate(-45deg);background:var(--accent);border:2px solid #fff;box-shadow:0 4px 12px rgba(0,0,0,.45);
+ z-index:2;pointer-events:none;animation:drop .18s ease-out}
+.pin i{position:absolute;inset:0;display:grid;place-items:center;transform:rotate(45deg);
+ font:600 11px/1 "Exo 2",sans-serif;color:#fff;font-style:normal}
+.pin.sent{background:#1FB067}
+.pin.mine{background:#F59E0B}
+@keyframes drop{from{transform:rotate(-45deg) translateY(-10px);opacity:0}to{transform:rotate(-45deg);opacity:1}}
+.pop{position:absolute;z-index:3;width:min(292px,86vw);background:var(--surface);color:var(--text);
+ border-radius:14px;box-shadow:0 18px 50px rgba(0,0,0,.5);padding:12px;display:flex;flex-direction:column;gap:8px;
+ animation:slide .16s ease-out;line-height:normal}
+.pop textarea{font:inherit;font-size:14px;color:var(--text);background:var(--raise);border:1px solid var(--line);
+ border-radius:10px;padding:9px 11px;min-height:78px;resize:none;outline:none;width:100%;line-height:1.45}
+.pop textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(27,103,245,.15)}
+.pop .r{display:flex;gap:8px;align-items:center}
+.pop input{font:inherit;font-size:12.5px;color:var(--text);background:var(--raise);border:1px solid var(--line);
+ border-radius:9px;padding:7px 10px;outline:none;flex:1;min-width:0}
+.pop input:focus{border-color:var(--accent)}
+.pop .go{font:inherit;font-weight:600;font-size:13px;color:#fff;background:var(--accent);border:0;border-radius:9px;
+ padding:8px 14px;cursor:pointer;white-space:nowrap}
+.pop .go:disabled{opacity:.5}
+.pop .k{font-size:11px;color:var(--muted);text-align:right}
+.pop .k kbd{font:inherit;background:var(--raise);border:1px solid var(--line);border-radius:4px;padding:0 4px}
+.toast{position:fixed;left:50%;bottom:64px;transform:translateX(-50%);z-index:90;background:#1FB067;color:#fff;
+ font-weight:600;font-size:13.5px;padding:10px 16px;border-radius:20px;box-shadow:0 10px 30px rgba(0,0,0,.35);
+ opacity:0;pointer-events:none;transition:opacity .2s}
+.toast.on{opacity:1}
 .cp .warn{font-size:12.5px;color:var(--muted);line-height:1.5;padding:10px 12px;border-radius:10px;
  background:var(--raise);border:1px dashed var(--line)}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
@@ -139,7 +171,7 @@ footer{margin-top:48px;padding:22px 0 52px;border-top:1px solid var(--line);
 <span><b>48</b> екранів</span><span><b>6</b> флоу</span>
 <span>iPhone 16 · 393×852</span><span>SwiftUI · iOS</span>
 </div>
-<p class="hint"><b>Як залишити коментар:</b> біля назви кожного флоу є кнопка «Коментувати», а на відкритому екрані — «Коментувати цей екран». Коментар одразу зберігається в таблицю команди, логін не потрібен. Клік на екран відкриває його великим, стрілки ← → гортають.</p>
+<p class="hint"><b>Як залишити коментар:</b> відкрий екран і клікни на те місце, про яке хочеш сказати — зʼявиться пін і поле для тексту. Коментар одразу зберігається в таблицю команди, логін не потрібен. Про флоу загалом — кнопка «Коментувати» біля його назви. Стрілки ← → гортають екрани.</p>
 </header>
 </div>
 
@@ -342,8 +374,8 @@ footer{margin-top:48px;padding:22px 0 52px;border-top:1px solid var(--line);
 
 <div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Перегляд екрана">
 <button id="x" aria-label="Закрити">✕</button>
-<button class="cbtn" id="lbc">Коментувати цей екран</button>
-<img id="bi" alt="">
+<span class="tip">Клікни на екран, щоб лишити коментар у цьому місці</span>
+<div class="stage" id="stage"><img id="bi" alt=""></div>
 <div class="cap"><span id="bl"></span><i id="bn"></i><u id="br"></u></div>
 </div>
 
@@ -372,12 +404,12 @@ const lb=document.getElementById('lb'),bi=document.getElementById('bi'),
 const cards=[...document.querySelectorAll('.card')];let i=-1;
 function show(k){if(k<0||k>=cards.length)return;i=k;const c=cards[k];
  bi.src=c.dataset.src;bi.alt=c.dataset.label;bl.textContent=c.dataset.label;
- bn.textContent=c.dataset.note;br.textContent=c.dataset.route;lb.setAttribute('open','');}
-function hide(){lb.removeAttribute('open');bi.src='';if(i>-1)cards[i].focus();}
+ bn.textContent=c.dataset.note;br.textContent=c.dataset.route;lb.setAttribute('open','');clearStage();renderMine();}
+function hide(){clearStage();lb.removeAttribute('open');bi.src='';if(i>-1)cards[i].focus();}
 cards.forEach((c,k)=>{c.addEventListener('click',()=>show(k));
  c.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();show(k);}});});
 document.getElementById('x').addEventListener('click',hide);
-lb.addEventListener('click',e=>{if(e.target===lb)hide();});
+lb.addEventListener('click',e=>{if(e.target===lb){if(pop){clearStage();renderMine();}else hide();}});
 document.addEventListener('keydown',e=>{if(!lb.hasAttribute('open'))return;
  if(e.key==='Escape')hide();
  if(e.key==='ArrowRight')show(Math.min(i+1,cards.length-1));
@@ -406,8 +438,55 @@ function openPanel(flow,screen){
  cp.setAttribute('open','');setTimeout(()=>ftext.focus(),60);}
 function closePanel(){cp.removeAttribute('open');}
 document.querySelectorAll('.flow .cbtn').forEach(b=>b.addEventListener('click',()=>openPanel(b.dataset.flow,'')));
-document.getElementById('lbc').addEventListener('click',()=>{const c=cards[i];
- openPanel(flowOf(c),c.dataset.label+' ('+c.dataset.route+')');});
+/* ---- піни на екрані ---- */
+const stage=document.getElementById('stage'),toast=document.getElementById('toast');
+let pop=null,pins=[];
+function loadPins(){try{return JSON.parse(localStorage.getItem('mk.pins')||'[]');}catch(e){return [];}}
+function savePin(p){try{const a=loadPins();a.push(p);localStorage.setItem('mk.pins',JSON.stringify(a.slice(-200)));}catch(e){}}
+function clearStage(){stage.querySelectorAll('.pin,.pop').forEach(n=>n.remove());pop=null;}
+function addPin(x,y,cls,n){const p=document.createElement('div');p.className='pin '+(cls||'');
+ p.style.left=x+'%';p.style.top=y+'%';if(n)p.innerHTML='<i>'+n+'</i>';stage.appendChild(p);return p;}
+function renderMine(){const r=cards[i].dataset.route;loadPins().filter(p=>p.route===r).forEach((p,k)=>addPin(p.x,p.y,'mine',k+1));}
+function placePop(x,y){
+ if(pop)pop.remove();
+ pop=document.createElement('div');pop.className='pop';
+ pop.innerHTML='<textarea placeholder="Що тут не так або що варто змінити?"></textarea>'+
+  '<div class="r"><input placeholder="Ваше імʼя" value=""><button class="go">Надіслати</button></div>'+
+  '<div class="k"><kbd>⌘</kbd>+<kbd>Enter</kbd> — надіслати · <kbd>Esc</kbd> — скасувати</div>';
+ const ta=pop.querySelector('textarea'),nm=pop.querySelector('input'),go=pop.querySelector('.go');
+ try{nm.value=localStorage.getItem('mk.name')||'';}catch(e){}
+ const R=stage.getBoundingClientRect();
+ const left=x>55?'auto':'calc('+x+'% + 16px)',right=x>55?'calc('+(100-x)+'% + 16px)':'auto';
+ pop.style.left=left;pop.style.right=right;
+ pop.style.top='min(calc('+y+'% - 20px), '+(R.height-190)+'px)';
+ stage.appendChild(pop);setTimeout(()=>ta.focus(),30);
+ const send=()=>{const t=ta.value.trim();if(!t)return;go.disabled=true;
+  const c=cards[i];try{localStorage.setItem('mk.name',nm.value);}catch(e){}
+  const link=location.origin+location.pathname+'#'+c.dataset.route+'@'+x.toFixed(1)+','+y.toFixed(1);
+  post({flow:flowOf(c),screen:c.dataset.label+' ('+c.dataset.route+') · пін '+x.toFixed(0)+'%,'+y.toFixed(0)+'%',
+   name:nm.value.trim()||'Анонім',text:t,page:link},()=>{
+   savePin({route:c.dataset.route,x,y,t:Date.now()});
+   clearStage();renderMine();
+   toast.classList.add('on');setTimeout(()=>toast.classList.remove('on'),1800);});};
+ go.addEventListener('click',send);
+ ta.addEventListener('keydown',e=>{if((e.metaKey||e.ctrlKey)&&e.key==='Enter'){e.preventDefault();send();}
+  if(e.key==='Escape'){e.stopPropagation();clearStage();renderMine();}});
+ pop.addEventListener('click',e=>e.stopPropagation());
+}
+bi.addEventListener('click',e=>{
+ if(!FORM.action){openPanel(flowOf(cards[i]),cards[i].dataset.label+' ('+cards[i].dataset.route+')');return;}
+ const r=bi.getBoundingClientRect();
+ const x=Math.max(0,Math.min(100,(e.clientX-r.left)/r.width*100)),y=Math.max(0,Math.min(100,(e.clientY-r.top)/r.height*100));
+ clearStage();renderMine();addPin(x,y,'');placePop(x,y);e.stopPropagation();});
+function post(d,done){
+ const f=document.createElement('form');f.method='POST';f.action=FORM.action;f.target='gsink';f.hidden=true;
+ const m={[FORM.fields.flow]:d.flow,[FORM.fields.screen]:d.screen,[FORM.fields.name]:d.name,[FORM.fields.text]:d.text,[FORM.fields.page]:d.page};
+ for(const k in m){const inp=document.createElement('input');inp.name=k;inp.value=m[k];f.appendChild(inp);}
+ document.body.appendChild(f);f.submit();setTimeout(()=>{f.remove();done&&done();},600);}
+/* deep link: #route@x,y */
+(function(){const m=location.hash.match(/^#([A-Za-z0-9_]+)@([\d.]+),([\d.]+)$/);if(!m)return;
+ const k=cards.findIndex(c=>c.dataset.route===m[1]);if(k<0)return;
+ show(k);setTimeout(()=>{clearStage();addPin(+m[2],+m[3],'sent','!');},80);})();
 document.getElementById('cpx').addEventListener('click',closePanel);
 document.getElementById('cpc').addEventListener('click',closePanel);
 document.getElementById('again').addEventListener('click',()=>{ftext.value='';cp.removeAttribute('data-state');ftext.focus();});
