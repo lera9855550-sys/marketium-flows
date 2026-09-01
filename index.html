@@ -404,12 +404,12 @@ const lb=document.getElementById('lb'),bi=document.getElementById('bi'),
 const cards=[...document.querySelectorAll('.card')];let i=-1;
 function show(k){if(k<0||k>=cards.length)return;i=k;const c=cards[k];
  bi.src=c.dataset.src;bi.alt=c.dataset.label;bl.textContent=c.dataset.label;
- bn.textContent=c.dataset.note;br.textContent=c.dataset.route;lb.setAttribute('open','');clearStage();renderMine();}
+ bn.textContent=c.dataset.note;br.textContent=c.dataset.route;lb.setAttribute('open','');openedAt=Date.now();clearStage();renderMine();}
 function hide(){clearStage();lb.removeAttribute('open');bi.src='';if(i>-1)cards[i].focus();}
 cards.forEach((c,k)=>{c.addEventListener('click',()=>show(k));
  c.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();show(k);}});});
 document.getElementById('x').addEventListener('click',hide);
-lb.addEventListener('click',e=>{if(e.target===lb){if(pop){clearStage();renderMine();}else hide();}});
+let openedAt=0;lb.addEventListener('click',e=>{if(e.target!==lb||Date.now()-openedAt<900)return;if(pop){clearStage();renderMine();}else hide();});
 document.addEventListener('keydown',e=>{if(!lb.hasAttribute('open'))return;
  if(e.key==='Escape')hide();
  if(e.key==='ArrowRight')show(Math.min(i+1,cards.length-1));
