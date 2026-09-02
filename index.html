@@ -160,10 +160,10 @@ figcaption{cursor:zoom-in}
 <div class="wrap">
 <header class="mast">
 <h1>Флоу та екрани Marketium</h1>
-<p class="lede">Повна карта застосунку: шість користувацьких шляхів і всі 48 екранів. Кожен екран — справжній роут, знятий із симулятора, а не мокап. Структура зчитана з коду: <code>Router</code>, <code>RootView</code> і всі переходи між екранами.</p>
+<p class="lede">Повна карта застосунку: шість користувацьких шляхів і всі 52 екранів. Кожен екран — справжній роут, знятий із симулятора, а не мокап. Структура зчитана з коду: <code>Router</code>, <code>RootView</code> і всі переходи між екранами.</p>
 <div class="grad"></div>
 <div class="meta">
-<span><b>48</b> екранів</span><span><b>6</b> флоу</span>
+<span><b>52</b> екранів</span><span><b>6</b> флоу</span>
 <span>iPhone 16 · 393×852</span><span>SwiftUI · iOS</span>
 </div>
 <div class="howto"><span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3h11A2.5 2.5 0 0 1 20 5.5v8a2.5 2.5 0 0 1-2.5 2.5H10l-4.2 3.6c-.7.6-1.8.1-1.8-.8V5.5Z" fill="currentColor"/><path d="M12 6.5v6M9 9.5h6" stroke="#fff" stroke-width="1.8" stroke-linecap="round"/></svg></span><div><b>Щоб лишити коментар — просто клікни на екран.</b><span>У тому місці зʼявиться пін і поле для тексту. Пиши, тисни «Надіслати» — коментар одразу потрапляє в таблицю команди. Без реєстрації.</span></div></div>
@@ -175,9 +175,9 @@ figcaption{cursor:zoom-in}
 <div class="wrap">
 <section class="flow" id="fA">
 <header class="fh">
-<div class="fh-top"><span class="code">A</span><h2>Гра на одному пристрої</h2><span class="count">11</span></div>
-<p class="blurb">Класичний Alias: телефон передають по колу. Сім кроків від вибору способу гри до першого раунду.</p>
-<p class="path">playStyle → gameMode → participantCount → teamList → setList → gameSettings → getReady</p>
+<div class="fh-top"><span class="code">A</span><h2>Гра на одному пристрої</h2><span class="count">10</span></div>
+<p class="blurb">Класичний Alias: телефон передають по колу. Шість кроків від вибору способу гри до першого раунду — команди збираються одразу, без окремого «скільки вас».</p>
+<p class="path">playStyle → gameMode → teamList → setList → gameSettings → getReady</p>
 </header>
 <div class="grid-screens"><figure class="card" tabindex="0" data-route="playStyle" data-label="Спосіб гри" data-note="Один пристрій, кімната або приєднання" data-src="shots/playStyle.jpg">
 <div class="shot"><img src="shots/playStyle.jpg" alt="Спосіб гри" loading="lazy"></div>
@@ -185,9 +185,6 @@ figcaption{cursor:zoom-in}
 </figure><figure class="card" tabindex="0" data-route="gameMode" data-label="Режим" data-note="Командний чи одиночний" data-src="shots/gameMode.jpg">
 <div class="shot"><img src="shots/gameMode.jpg" alt="Режим" loading="lazy"></div>
 <figcaption><b>Режим</b><span class="note">Командний чи одиночний</span></figcaption>
-</figure><figure class="card" tabindex="0" data-route="participantCount" data-label="Кількість" data-note="Скільки команд або гравців" data-src="shots/participantCount.jpg">
-<div class="shot"><img src="shots/participantCount.jpg" alt="Кількість" loading="lazy"></div>
-<figcaption><b>Кількість</b><span class="note">Скільки команд або гравців</span></figcaption>
 </figure><figure class="card" tabindex="0" data-route="teamList" data-label="Команди" data-note="Назви й аватари" data-src="shots/teamList.jpg">
 <div class="shot"><img src="shots/teamList.jpg" alt="Команди" loading="lazy"></div>
 <figcaption><b>Команди</b><span class="note">Назви й аватари</span></figcaption>
@@ -215,7 +212,7 @@ figcaption{cursor:zoom-in}
 </figure></div>
 </section><section class="flow" id="fB">
 <header class="fh">
-<div class="fh-top"><span class="code">B</span><h2>Кімната (кілька пристроїв)</h2><span class="count">8</span></div>
+<div class="fh-top"><span class="code">B</span><h2>Кімната (кілька пристроїв)</h2><span class="count">12</span></div>
 <p class="blurb">Мультиплеєр: організатор створює кімнату й показує код, гості заходять за ним і отримують ролі. Транспорт між пристроями поки мок — приєднання й старт раунду імітуються таймерами.</p>
 <p class="path">організатор: createRoom → сетап як у A  ·  гість: joinRoom → roomLobby → roomRole → roomGuessing</p>
 </header>
@@ -231,6 +228,12 @@ figcaption{cursor:zoom-in}
 </figure><figure class="card" tabindex="0" data-route="roomLobby" data-label="Лобі гостя" data-note="Очікування старту" data-src="shots/roomLobby.jpg">
 <div class="shot"><img src="shots/roomLobby.jpg" alt="Лобі гостя" loading="lazy"></div>
 <figcaption><b>Лобі гостя</b><span class="note">Очікування старту</span></figcaption>
+</figure><figure class="card" tabindex="0" data-route="createRoomClose" data-label="Закрити кімнату?" data-note="Організатор виходить із лобі" data-src="shots/createRoomClose.jpg">
+<div class="shot"><img src="shots/createRoomClose.jpg" alt="Закрити кімнату?" loading="lazy"></div>
+<figcaption><b>Закрити кімнату?</b><span class="note">Організатор виходить із лобі</span></figcaption>
+</figure><figure class="card" tabindex="0" data-route="roomClosed" data-label="Кімнату закрито" data-note="Гість: організатор вийшов до старту" data-src="shots/roomClosed.jpg">
+<div class="shot"><img src="shots/roomClosed.jpg" alt="Кімнату закрито" loading="lazy"></div>
+<figcaption><b>Кімнату закрито</b><span class="note">Гість: організатор вийшов до старту</span></figcaption>
 </figure><figure class="card" tabindex="0" data-route="roomRole" data-label="Роль: відгадувач" data-note="Слова бачить лише пояснювач" data-src="shots/roomRole.jpg">
 <div class="shot"><img src="shots/roomRole.jpg" alt="Роль: відгадувач" loading="lazy"></div>
 <figcaption><b>Роль: відгадувач</b><span class="note">Слова бачить лише пояснювач</span></figcaption>
@@ -243,10 +246,16 @@ figcaption{cursor:zoom-in}
 </figure><figure class="card" tabindex="0" data-route="roomGuessingExit" data-label="Вихід із кімнати" data-note="Таймер на паузі" data-src="shots/roomGuessingExit.jpg">
 <div class="shot"><img src="shots/roomGuessingExit.jpg" alt="Вихід із кімнати" loading="lazy"></div>
 <figcaption><b>Вихід із кімнати</b><span class="note">Таймер на паузі</span></figcaption>
+</figure><figure class="card" tabindex="0" data-route="roomHostExit" data-label="Вихід організатора" data-note="Роль переходить наступному" data-src="shots/roomHostExit.jpg">
+<div class="shot"><img src="shots/roomHostExit.jpg" alt="Вихід організатора" loading="lazy"></div>
+<figcaption><b>Вихід організатора</b><span class="note">Роль переходить наступному</span></figcaption>
+</figure><figure class="card" tabindex="0" data-route="roomHostLost" data-label="Організатор відключився" data-note="Пауза 30 с до передачі ролі" data-src="shots/roomHostLost.jpg">
+<div class="shot"><img src="shots/roomHostLost.jpg" alt="Організатор відключився" loading="lazy"></div>
+<figcaption><b>Організатор відключився</b><span class="note">Пауза 30 с до передачі ролі</span></figcaption>
 </figure></div>
 </section><section class="flow" id="fC">
 <header class="fh">
-<div class="fh-top"><span class="code">C</span><h2>Ігровий цикл</h2><span class="count">11</span></div>
+<div class="fh-top"><span class="code">C</span><h2>Ігровий цикл</h2><span class="count">12</span></div>
 <p class="blurb">Серце застосунку. Цикл крутиться замінами верхнього екрана, тож стек не росте за десятки раундів і «назад» не веде в уже зарахований раунд. Очки нараховуються лише на підсумку по «Далі» — це дозволяє виправити спірні слова, не віднімаючи вже нараховані бали.</p>
 <p class="path">getReady → gameplay → roundResults → getReady / ranking / win</p>
 </header>
@@ -259,6 +268,9 @@ figcaption{cursor:zoom-in}
 </figure><figure class="card" tabindex="0" data-route="gameplayHint" data-label="Підказки свайпу" data-note="На кожну нову партію" data-src="shots/gameplayHint.jpg">
 <div class="shot"><img src="shots/gameplayHint.jpg" alt="Підказки свайпу" loading="lazy"></div>
 <figcaption><b>Підказки свайпу</b><span class="note">На кожну нову партію</span></figcaption>
+</figure><figure class="card" tabindex="0" data-route="gameplaySwipe" data-label="Свайп вправо" data-note="Вердикт видно під пальцем" data-src="shots/gameplaySwipe.jpg">
+<div class="shot"><img src="shots/gameplaySwipe.jpg" alt="Свайп вправо" loading="lazy"></div>
+<figcaption><b>Свайп вправо</b><span class="note">Вердикт видно під пальцем</span></figcaption>
 </figure><figure class="card" tabindex="0" data-route="gameplayStreak" data-label="Бонус за серію" data-note="Спалах при серії" data-src="shots/gameplayStreak.jpg">
 <div class="shot"><img src="shots/gameplayStreak.jpg" alt="Бонус за серію" loading="lazy"></div>
 <figcaption><b>Бонус за серію</b><span class="note">Спалах при серії</span></figcaption>
