@@ -160,10 +160,10 @@ figcaption{cursor:zoom-in}
 <div class="wrap">
 <header class="mast">
 <h1>Флоу та екрани Marketium</h1>
-<p class="lede">Повна карта застосунку: шість користувацьких шляхів і всі 58 екранів. Кожен екран — справжній роут, знятий із симулятора, а не мокап. Структура зчитана з коду: <code>Router</code>, <code>RootView</code> і всі переходи між екранами.</p>
+<p class="lede">Повна карта застосунку: шість користувацьких шляхів і всі 59 екранів. Кожен екран — справжній роут, знятий із симулятора, а не мокап. Структура зчитана з коду: <code>Router</code>, <code>RootView</code> і всі переходи між екранами.</p>
 <div class="grad"></div>
 <div class="meta">
-<span><b>58</b> екранів</span><span><b>6</b> флоу</span>
+<span><b>59</b> екранів</span><span><b>6</b> флоу</span>
 <span>iPhone 16 · 393×852</span><span>SwiftUI · iOS</span>
 </div>
 <div class="howto"><span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3h11A2.5 2.5 0 0 1 20 5.5v8a2.5 2.5 0 0 1-2.5 2.5H10l-4.2 3.6c-.7.6-1.8.1-1.8-.8V5.5Z" fill="currentColor"/><path d="M12 6.5v6M9 9.5h6" stroke="#fff" stroke-width="1.8" stroke-linecap="round"/></svg></span><div><b>Щоб лишити коментар — просто клікни на екран.</b><span>У тому місці зʼявиться пін і поле для тексту. Пиши, тисни «Надіслати» — коментар одразу потрапляє в таблицю команди. Без реєстрації.</span></div></div>
@@ -301,9 +301,9 @@ figcaption{cursor:zoom-in}
 </figure></div>
 </section><section class="flow" id="fD">
 <header class="fh">
-<div class="fh-top"><span class="code">D</span><h2>Словник</h2><span class="count">9</span></div>
+<div class="fh-top"><span class="code">D</span><h2>Словник</h2><span class="count">10</span></div>
 <p class="blurb">Слова, збережені під час гри. Флешкартки збирають колоду лише з невивчених і фіксують її на вході. Якщо вивчено все — береться повний словник як режим повторення.</p>
-<p class="path">savedWords → savedWordCards · addWords</p>
+<p class="path">savedWords → savedWordCards</p>
 </header>
 <div class="grid-screens"><figure class="card" tabindex="0" data-route="savedWords" data-label="Словник" data-note="Список, статистика, прогрес" data-src="shots/savedWords.jpg">
 <div class="shot"><img src="shots/savedWords.jpg" alt="Словник" loading="lazy"></div>
@@ -326,12 +326,15 @@ figcaption{cursor:zoom-in}
 </figure><figure class="card" tabindex="0" data-route="savedWordCardsDone" data-label="Усі слова вивчено" data-note="Колода порожня: додати слова або повторити всі" data-src="shots/savedWordCardsDone.jpg">
 <div class="shot"><img src="shots/savedWordCardsDone.jpg" alt="Усі слова вивчено" loading="lazy"></div>
 <figcaption><b>Усі слова вивчено</b><span class="note">Колода порожня: додати слова або повторити всі</span></figcaption>
-</figure><figure class="card" tabindex="0" data-route="addWords" data-label="Додати слова" data-note="Лише з розіграних раундів: не відгадали — першими" data-src="shots/addWords.jpg">
-<div class="shot"><img src="shots/addWords.jpg" alt="Додати слова" loading="lazy"></div>
-<figcaption><b>Додати слова</b><span class="note">Лише з розіграних раундів: не відгадали — першими</span></figcaption>
-</figure><figure class="card" tabindex="0" data-route="addWordsEmpty" data-label="Ще не грали" data-note="Порожній журнал → «Зіграти»" data-src="shots/addWordsEmpty.jpg">
+</figure><figure class="card" tabindex="0" data-route="addWords" data-label="Історія ігор" data-note="Список партій: дата, сети, скільки не відгадали" data-src="shots/addWords.jpg">
+<div class="shot"><img src="shots/addWords.jpg" alt="Історія ігор" loading="lazy"></div>
+<figcaption><b>Історія ігор</b><span class="note">Список партій: дата, сети, скільки не відгадали</span></figcaption>
+</figure><figure class="card" tabindex="0" data-route="playedGameWords" data-label="Слова гри" data-note="Закладка в обидва боки — збережене лишається з позначкою" data-src="shots/playedGameWords.jpg">
+<div class="shot"><img src="shots/playedGameWords.jpg" alt="Слова гри" loading="lazy"></div>
+<figcaption><b>Слова гри</b><span class="note">Закладка в обидва боки — збережене лишається з позначкою</span></figcaption>
+</figure><figure class="card" tabindex="0" data-route="addWordsEmpty" data-label="Ще не грали" data-note="Порожня історія → «Зіграти»" data-src="shots/addWordsEmpty.jpg">
 <div class="shot"><img src="shots/addWordsEmpty.jpg" alt="Ще не грали" loading="lazy"></div>
-<figcaption><b>Ще не грали</b><span class="note">Порожній журнал → «Зіграти»</span></figcaption>
+<figcaption><b>Ще не грали</b><span class="note">Порожня історія → «Зіграти»</span></figcaption>
 </figure></div>
 </section><section class="flow" id="fE">
 <header class="fh">
