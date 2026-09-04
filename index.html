@@ -160,10 +160,10 @@ figcaption{cursor:zoom-in}
 <div class="wrap">
 <header class="mast">
 <h1>Флоу та екрани Marketium</h1>
-<p class="lede">Повна карта застосунку: шість користувацьких шляхів і всі 60 екранів. Кожен екран — справжній роут, знятий із симулятора, а не мокап. Структура зчитана з коду: <code>Router</code>, <code>RootView</code> і всі переходи між екранами.</p>
+<p class="lede">Повна карта застосунку: шість користувацьких шляхів і всі 62 екранів. Кожен екран — справжній роут, знятий із симулятора, а не мокап. Структура зчитана з коду: <code>Router</code>, <code>RootView</code> і всі переходи між екранами.</p>
 <div class="grad"></div>
 <div class="meta">
-<span><b>60</b> екранів</span><span><b>6</b> флоу</span>
+<span><b>62</b> екранів</span><span><b>6</b> флоу</span>
 <span>iPhone 16 · 393×852</span><span>SwiftUI · iOS</span>
 </div>
 <div class="howto"><span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3h11A2.5 2.5 0 0 1 20 5.5v8a2.5 2.5 0 0 1-2.5 2.5H10l-4.2 3.6c-.7.6-1.8.1-1.8-.8V5.5Z" fill="currentColor"/><path d="M12 6.5v6M9 9.5h6" stroke="#fff" stroke-width="1.8" stroke-linecap="round"/></svg></span><div><b>Щоб лишити коментар — просто клікни на екран.</b><span>У тому місці зʼявиться пін і поле для тексту. Пиши, тисни «Надіслати» — коментар одразу потрапляє в таблицю команди. Без реєстрації.</span></div></div>
@@ -215,16 +215,22 @@ figcaption{cursor:zoom-in}
 </figure></div>
 </section><section class="flow" id="fB">
 <header class="fh">
-<div class="fh-top"><span class="code">B</span><h2>Кімната (кілька пристроїв)</h2><span class="count">12</span></div>
+<div class="fh-top"><span class="code">B</span><h2>Кімната (кілька пристроїв)</h2><span class="count">14</span></div>
 <p class="blurb">Мультиплеєр: організатор створює кімнату й показує код, гості заходять за ним і отримують ролі. Транспорт між пристроями поки мок — приєднання й старт раунду імітуються таймерами.</p>
 <p class="path">організатор: createRoom → сетап як у A  ·  гість: joinRoom → roomLobby → roomRole → roomGuessing</p>
 </header>
 <div class="grid-screens"><figure class="card" tabindex="0" data-route="createRoom" data-label="Створення кімнати" data-note="Код і QR" data-src="shots/createRoom.jpg">
 <div class="shot"><img src="shots/createRoom.jpg" alt="Створення кімнати" loading="lazy"></div>
 <figcaption><b>Створення кімнати</b><span class="note">Код і QR</span></figcaption>
-</figure><figure class="card" tabindex="0" data-route="joinRoom" data-label="Приєднання" data-note="Ввід коду організатора" data-src="shots/joinRoom.jpg">
+</figure><figure class="card" tabindex="0" data-route="joinRoom" data-label="Приєднання" data-note="Скан QR або ввід коду організатора" data-src="shots/joinRoom.jpg">
 <div class="shot"><img src="shots/joinRoom.jpg" alt="Приєднання" loading="lazy"></div>
 <figcaption><b>Приєднання</b><span class="note">Ввід коду організатора</span></figcaption>
+</figure><figure class="card" tabindex="0" data-route="scanQR" data-label="Сканування QR" data-note="Візир зі скобами; де камери немає — демо-код" data-src="shots/scanQR.jpg">
+<div class="shot"><img src="shots/scanQR.jpg" alt="Сканування QR" loading="lazy"></div>
+<figcaption><b>Сканування QR</b><span class="note">Візир зі скобами; де камери немає — демо-код</span></figcaption>
+</figure><figure class="card" tabindex="0" data-route="scanQRFound" data-label="Код зчитано" data-note="Галочка, код і автоматичний вхід у лобі" data-src="shots/scanQRFound.jpg">
+<div class="shot"><img src="shots/scanQRFound.jpg" alt="Код зчитано" loading="lazy"></div>
+<figcaption><b>Код зчитано</b><span class="note">Галочка, код і автоматичний вхід у лобі</span></figcaption>
 </figure><figure class="card" tabindex="0" data-route="joinRoomTest" data-label="Приєднання — ввід" data-note="Перевірка поля" data-src="shots/joinRoomTest.jpg">
 <div class="shot"><img src="shots/joinRoomTest.jpg" alt="Приєднання — ввід" loading="lazy"></div>
 <figcaption><b>Приєднання — ввід</b><span class="note">Перевірка поля</span></figcaption>
