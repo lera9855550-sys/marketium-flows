@@ -160,10 +160,10 @@ figcaption{cursor:zoom-in}
 <div class="wrap">
 <header class="mast">
 <h1>Флоу та екрани Marketium</h1>
-<p class="lede">Повна карта застосунку: шість користувацьких шляхів і всі 64 екранів. Кожен екран — справжній роут, знятий із симулятора, а не мокап. Структура зчитана з коду: <code>Router</code>, <code>RootView</code> і всі переходи між екранами.</p>
+<p class="lede">Повна карта застосунку: шість користувацьких шляхів і всі 68 екранів. Кожен екран — справжній роут, знятий із симулятора, а не мокап. Структура зчитана з коду: <code>Router</code>, <code>RootView</code> і всі переходи між екранами.</p>
 <div class="grad"></div>
 <div class="meta">
-<span><b>64</b> екранів</span><span><b>6</b> флоу</span>
+<span><b>68</b> екранів</span><span><b>6</b> флоу</span>
 <span>iPhone 16 · 393×852</span><span>SwiftUI · iOS</span>
 </div>
 <div class="howto"><span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3h11A2.5 2.5 0 0 1 20 5.5v8a2.5 2.5 0 0 1-2.5 2.5H10l-4.2 3.6c-.7.6-1.8.1-1.8-.8V5.5Z" fill="currentColor"/><path d="M12 6.5v6M9 9.5h6" stroke="#fff" stroke-width="1.8" stroke-linecap="round"/></svg></span><div><b>Щоб лишити коментар — просто клікни на екран.</b><span>У тому місці зʼявиться пін і поле для тексту. Пиши, тисни «Надіслати» — коментар одразу потрапляє в таблицю команди. Без реєстрації.</span></div></div>
@@ -215,7 +215,7 @@ figcaption{cursor:zoom-in}
 </figure></div>
 </section><section class="flow" id="fB">
 <header class="fh">
-<div class="fh-top"><span class="code">B</span><h2>Кімната (кілька пристроїв)</h2><span class="count">14</span></div>
+<div class="fh-top"><span class="code">B</span><h2>Кімната (кілька пристроїв)</h2><span class="count">16</span></div>
 <p class="blurb">Мультиплеєр: організатор створює кімнату й показує код, гості заходять за ним і отримують ролі. Транспорт між пристроями поки мок — приєднання й старт раунду імітуються таймерами.</p>
 <p class="path">організатор: createRoom → сетап як у A  ·  гість: joinRoom → roomLobby → roomRole → roomGuessing</p>
 </header>
@@ -255,6 +255,12 @@ figcaption{cursor:zoom-in}
 </figure><figure class="card" tabindex="0" data-route="roomGuessingExit" data-label="Вихід із кімнати" data-note="Таймер на паузі" data-src="shots/roomGuessingExit.jpg">
 <div class="shot"><img src="shots/roomGuessingExit.jpg" alt="Вихід із кімнати" loading="lazy"></div>
 <figcaption><b>Вихід із кімнати</b><span class="note">Таймер на паузі</span></figcaption>
+</figure><figure class="card" tabindex="0" data-route="roomGuessingHard" data-label="Хард-режим — суперники" data-note="Список «не можна» без терміна і кнопка «Стоп»" data-src="shots/roomGuessingHard.jpg">
+<div class="shot"><img src="shots/roomGuessingHard.jpg" alt="Хард-режим — суперники" loading="lazy"></div>
+<figcaption><b>Хард-режим — суперники</b><span class="note">Список «не можна» без терміна і кнопка «Стоп»</span></figcaption>
+</figure><figure class="card" tabindex="0" data-route="roomGuessingStop" data-label="«Стоп» натиснуто" data-note="Вспишка, слово знято як пропуск" data-src="shots/roomGuessingStop.jpg">
+<div class="shot"><img src="shots/roomGuessingStop.jpg" alt="«Стоп» натиснуто" loading="lazy"></div>
+<figcaption><b>«Стоп» натиснуто</b><span class="note">Вспишка, слово знято як пропуск</span></figcaption>
 </figure><figure class="card" tabindex="0" data-route="roomHostExit" data-label="Вихід організатора" data-note="Роль переходить наступному" data-src="shots/roomHostExit.jpg">
 <div class="shot"><img src="shots/roomHostExit.jpg" alt="Вихід організатора" loading="lazy"></div>
 <figcaption><b>Вихід організатора</b><span class="note">Роль переходить наступному</span></figcaption>
@@ -264,7 +270,7 @@ figcaption{cursor:zoom-in}
 </figure></div>
 </section><section class="flow" id="fC">
 <header class="fh">
-<div class="fh-top"><span class="code">C</span><h2>Ігровий цикл</h2><span class="count">12</span></div>
+<div class="fh-top"><span class="code">C</span><h2>Ігровий цикл</h2><span class="count">14</span></div>
 <p class="blurb">Серце застосунку. Цикл крутиться замінами верхнього екрана, тож стек не росте за десятки раундів і «назад» не веде в уже зарахований раунд. Очки нараховуються лише на підсумку по «Далі» — це дозволяє виправити спірні слова, не віднімаючи вже нараховані бали.</p>
 <p class="path">getReady → gameplay → roundResults → getReady / ranking / win</p>
 </header>
@@ -280,6 +286,9 @@ figcaption{cursor:zoom-in}
 </figure><figure class="card" tabindex="0" data-route="gameplaySwipe" data-label="Свайп угору" data-note="Вердикт видно під пальцем" data-src="shots/gameplaySwipe.jpg">
 <div class="shot"><img src="shots/gameplaySwipe.jpg" alt="Свайп угору" loading="lazy"></div>
 <figcaption><b>Свайп угору</b><span class="note">Вердикт видно під пальцем</span></figcaption>
+</figure><figure class="card" tabindex="0" data-route="gameplayHard" data-label="Хард-режим — пояснювач" data-note="Три заборонені підказки під терміном" data-src="shots/gameplayHard.jpg">
+<div class="shot"><img src="shots/gameplayHard.jpg" alt="Хард-режим — пояснювач" loading="lazy"></div>
+<figcaption><b>Хард-режим — пояснювач</b><span class="note">Три заборонені підказки під терміном</span></figcaption>
 </figure><figure class="card" tabindex="0" data-route="gameplayStreak" data-label="Бонус за серію" data-note="Спалах при серії" data-src="shots/gameplayStreak.jpg">
 <div class="shot"><img src="shots/gameplayStreak.jpg" alt="Бонус за серію" loading="lazy"></div>
 <figcaption><b>Бонус за серію</b><span class="note">Спалах при серії</span></figcaption>
@@ -295,6 +304,9 @@ figcaption{cursor:zoom-in}
 </figure><figure class="card" tabindex="0" data-route="roundResultsOpen" data-label="Слово розкрите" data-note="Пояснення під терміном" data-src="shots/roundResultsOpen.jpg">
 <div class="shot"><img src="shots/roundResultsOpen.jpg" alt="Слово розкрите" loading="lazy"></div>
 <figcaption><b>Слово розкрите</b><span class="note">Пояснення під терміном</span></figcaption>
+</figure><figure class="card" tabindex="0" data-route="roundResultsStop" data-label="Підсумок зі «Стоп»" data-note="Позначка біля знятого слова, зірка лишається тоглом" data-src="shots/roundResultsStop.jpg">
+<div class="shot"><img src="shots/roundResultsStop.jpg" alt="Підсумок зі «Стоп»" loading="lazy"></div>
+<figcaption><b>Підсумок зі «Стоп»</b><span class="note">Позначка біля знятого слова, зірка лишається тоглом</span></figcaption>
 </figure><figure class="card" tabindex="0" data-route="ranking" data-label="Рейтинг — Top 3" data-note="Пʼєдестал після кола" data-src="shots/ranking.jpg">
 <div class="shot"><img src="shots/ranking.jpg" alt="Рейтинг — Top 3" loading="lazy"></div>
 <figcaption><b>Рейтинг — Top 3</b><span class="note">Пʼєдестал після кола</span></figcaption>
