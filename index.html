@@ -160,10 +160,10 @@ figcaption{cursor:zoom-in}
 <div class="wrap">
 <header class="mast">
 <h1>Флоу та екрани Marketium</h1>
-<p class="lede">Повна карта застосунку: шість користувацьких шляхів і усі 83 екрани. Кожен екран — справжній роут, знятий із симулятора, а не мокап. Структура зчитана з коду: <code>Router</code>, <code>RootView</code> і всі переходи між екранами.</p>
+<p class="lede">Повна карта застосунку: шість користувацьких шляхів і усі 86 екрани. Кожен екран — справжній роут, знятий із симулятора, а не мокап. Структура зчитана з коду: <code>Router</code>, <code>RootView</code> і всі переходи між екранами.</p>
 <div class="grad"></div>
 <div class="meta">
-<span><b>83</b> екрани</span><span><b>6</b> флоу</span>
+<span><b>86</b> екрани</span><span><b>6</b> флоу</span>
 <span>iPhone 16 · 393×852</span><span>SwiftUI · iOS</span>
 </div>
 <div class="howto"><span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3h11A2.5 2.5 0 0 1 20 5.5v8a2.5 2.5 0 0 1-2.5 2.5H10l-4.2 3.6c-.7.6-1.8.1-1.8-.8V5.5Z" fill="currentColor"/><path d="M12 6.5v6M9 9.5h6" stroke="#fff" stroke-width="1.8" stroke-linecap="round"/></svg></span><div><b>Щоб лишити коментар — просто клікни на екран.</b><span>У тому місці зʼявиться пін і поле для тексту. Пиши, тисни «Надіслати» — коментар одразу потрапляє в таблицю команди. Без реєстрації.</span></div></div>
@@ -218,7 +218,7 @@ figcaption{cursor:zoom-in}
 </figure></div>
 </section><section class="flow" id="fB">
 <header class="fh">
-<div class="fh-top"><span class="code">B</span><h2>Кімната (кілька пристроїв)</h2><span class="count">19</span></div>
+<div class="fh-top"><span class="code">B</span><h2>Кімната (кілька пристроїв)</h2><span class="count">20</span></div>
 <p class="blurb">Мультиплеєр: організатор створює кімнату й показує код, гості заходять за ним і отримують ролі. Транспорт між пристроями поки мок — приєднання й старт раунду імітуються таймерами.</p>
 <p class="path">організатор: createRoom → сетап як у A  ·  гість: joinRoom → roomLobby → roomRole → roomGuessing</p>
 </header>
@@ -240,6 +240,10 @@ figcaption{cursor:zoom-in}
 </figure><figure class="card" tabindex="0" data-route="playerNameFilled" data-label="Твій нік · заповнено" data-note="Минулий нік підставлено, аватар обрано" data-src="shots/playerNameFilled.jpg">
 <div class="shot"><img src="shots/playerNameFilled.jpg" alt="Твій нік · заповнено" loading="lazy"></div>
 <figcaption><b>Твій нік · заповнено</b><span class="note">Минулий нік підставлено, аватар обрано</span></figcaption>
+</figure>
+<figure class="card" tabindex="0" data-route="playerNameHost" data-label="Твій нік · організатор" data-note="Той самий екран перед створенням кімнати: порожнє поле, CTA «Створити кімнату» неактивна" data-src="shots/playerNameHost.jpg">
+<div class="shot"><img src="shots/playerNameHost.jpg" alt="Твій нік · організатор" loading="lazy"></div>
+<figcaption><b>Твій нік · організатор</b><span class="note">Той самий екран перед створенням кімнати: порожнє поле, CTA «Створити кімнату» неактивна</span></figcaption>
 </figure><figure class="card" tabindex="0" data-route="scanQR" data-label="Сканування QR" data-note="Картка з градієнтною рамкою, стан у капсулі; без камери — демо-код" data-src="shots/scanQR.jpg">
 <div class="shot"><img src="shots/scanQR.jpg" alt="Сканування QR" loading="lazy"></div>
 <figcaption><b>Сканування QR</b><span class="note">Картка з градієнтною рамкою, стан у капсулі; без камери — демо-код</span></figcaption>
@@ -282,7 +286,7 @@ figcaption{cursor:zoom-in}
 </figure></div>
 </section><section class="flow" id="fC">
 <header class="fh">
-<div class="fh-top"><span class="code">C</span><h2>Ігровий цикл</h2><span class="count">15</span></div>
+<div class="fh-top"><span class="code">C</span><h2>Ігровий цикл</h2><span class="count">16</span></div>
 <p class="blurb">Серце застосунку. Цикл крутиться замінами верхнього екрана, тож стек не росте за десятки раундів і «назад» не веде в уже зарахований раунд. Очки нараховуються лише на підсумку по «Далі» — це дозволяє виправити спірні слова, не віднімаючи вже нараховані бали.</p>
 <p class="path">getReady → gameplay → roundResults → getReady / ranking / win</p>
 </header>
@@ -319,6 +323,10 @@ figcaption{cursor:zoom-in}
 </figure><figure class="card" tabindex="0" data-route="roundResultsStop" data-label="Підсумок зі «Стоп»" data-note="Позначка біля знятого слова, зірка лишається тоглом" data-src="shots/roundResultsStop.jpg">
 <div class="shot"><img src="shots/roundResultsStop.jpg" alt="Підсумок зі «Стоп»" loading="lazy"></div>
 <figcaption><b>Підсумок зі «Стоп»</b><span class="note">Позначка біля знятого слова, зірка лишається тоглом</span></figcaption>
+</figure>
+<figure class="card" tabindex="0" data-route="roundResultsCredited" data-label="Підсумок · бал іншій команді" data-note="Капсула з назвою команди в рядку слова — бал віддали суперникам" data-src="shots/roundResultsCredited.jpg">
+<div class="shot"><img src="shots/roundResultsCredited.jpg" alt="Підсумок · бал іншій команді" loading="lazy"></div>
+<figcaption><b>Підсумок · бал іншій команді</b><span class="note">Капсула з назвою команди в рядку слова — бал віддали суперникам</span></figcaption>
 </figure><figure class="card" tabindex="0" data-route="roundResultsGuest" data-label="Підсумок · гість кімнати" data-note="Зірки лише для читання — ставить той, хто пояснював" data-src="shots/roundResultsGuest.jpg">
 <div class="shot"><img src="shots/roundResultsGuest.jpg" alt="Підсумок · гість кімнати" loading="lazy"></div>
 <figcaption><b>Підсумок · гість кімнати</b><span class="note">Зірки лише для читання — ставить той, хто пояснював</span></figcaption>
@@ -334,7 +342,7 @@ figcaption{cursor:zoom-in}
 </figure></div>
 </section><section class="flow" id="fD">
 <header class="fh">
-<div class="fh-top"><span class="code">D</span><h2>Словник</h2><span class="count">11</span></div>
+<div class="fh-top"><span class="code">D</span><h2>Словник</h2><span class="count">12</span></div>
 <p class="blurb">Слова, збережені під час гри. Флешкартки збирають колоду лише з невивчених і фіксують її на вході. Якщо вивчено все — береться повний словник як режим повторення.</p>
 <p class="path">savedWords → savedWordCards</p>
 </header>
@@ -368,6 +376,10 @@ figcaption{cursor:zoom-in}
 </figure><figure class="card" tabindex="0" data-route="playedGameWordsToast" data-label="Слово додано" data-note="Світла капсула в мові карток замість алерту" data-src="shots/playedGameWordsToast.jpg">
 <div class="shot"><img src="shots/playedGameWordsToast.jpg" alt="Слово додано" loading="lazy"></div>
 <figcaption><b>Слово додано</b><span class="note">Світла капсула в мові карток замість алерту</span></figcaption>
+</figure>
+<figure class="card" tabindex="0" data-route="playedGameWordsTeam" data-label="Слова партії · фільтр команди" data-note="Тап по команді лишає тільки її слова; трофей — у лідера" data-src="shots/playedGameWordsTeam.jpg">
+<div class="shot"><img src="shots/playedGameWordsTeam.jpg" alt="Слова партії · фільтр команди" loading="lazy"></div>
+<figcaption><b>Слова партії · фільтр команди</b><span class="note">Тап по команді лишає тільки її слова; трофей — у лідера</span></figcaption>
 </figure><figure class="card" tabindex="0" data-route="addWordsEmpty" data-label="Ще не грали" data-note="Порожня історія → «Зіграти»" data-src="shots/addWordsEmpty.jpg">
 <div class="shot"><img src="shots/addWordsEmpty.jpg" alt="Ще не грали" loading="lazy"></div>
 <figcaption><b>Ще не грали</b><span class="note">Порожня історія → «Зіграти»</span></figcaption>
