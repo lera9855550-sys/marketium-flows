@@ -160,7 +160,7 @@ figcaption{cursor:zoom-in}
 <div class="wrap">
 <header class="mast">
 <h1>Флоу та екрани Marketium</h1>
-<p class="lede">Повна карта застосунку: шість користувацьких шляхів і всі 68 екранів. Кожен екран — справжній роут, знятий із симулятора, а не мокап. Структура зчитана з коду: <code>Router</code>, <code>RootView</code> і всі переходи між екранами.</p>
+<p class="lede">Повна карта застосунку: шість користувацьких шляхів і усі 82 екрани. Кожен екран — справжній роут, знятий із симулятора, а не мокап. Структура зчитана з коду: <code>Router</code>, <code>RootView</code> і всі переходи між екранами.</p>
 <div class="grad"></div>
 <div class="meta">
 <span><b>68</b> екранів</span><span><b>6</b> флоу</span>
@@ -175,7 +175,7 @@ figcaption{cursor:zoom-in}
 <div class="wrap">
 <section class="flow" id="fA">
 <header class="fh">
-<div class="fh-top"><span class="code">A</span><h2>Гра на одному пристрої</h2><span class="count">11</span></div>
+<div class="fh-top"><span class="code">A</span><h2>Гра на одному пристрої</h2><span class="count">12</span></div>
 <p class="blurb">Класичний Alias: телефон передають по колу. Сім кроків від вибору способу гри до першого раунду.</p>
 <p class="path">playStyle → gameMode → participantCount → teamList → setList → gameSettings → getReady</p>
 </header>
@@ -203,9 +203,12 @@ figcaption{cursor:zoom-in}
 </figure><figure class="card" tabindex="0" data-route="setDetail" data-label="Опис набору" data-note="Деталі й приклади слів" data-src="shots/setDetail.jpg">
 <div class="shot"><img src="shots/setDetail.jpg" alt="Опис набору" loading="lazy"></div>
 <figcaption><b>Опис набору</b><span class="note">Деталі й приклади слів</span></figcaption>
-</figure><figure class="card" tabindex="0" data-route="gameSettings" data-label="Налаштування раунду" data-note="Тривалість, ціль, складність" data-src="shots/gameSettings.jpg">
-<div class="shot"><img src="shots/gameSettings.jpg" alt="Налаштування раунду" loading="lazy"></div>
-<figcaption><b>Налаштування раунду</b><span class="note">Тривалість, ціль, складність</span></figcaption>
+</figure><figure class="card" tabindex="0" data-route="gameSettings" data-label="Режим гри" data-note="Три режими з кольоровими плашками + «Свій»; «Складна гра» вмикає хард-режим" data-src="shots/gameSettings.jpg">
+<div class="shot"><img src="shots/gameSettings.jpg" alt="Режим гри" loading="lazy"></div>
+<figcaption><b>Режим гри</b><span class="note">Три режими з кольоровими плашками + «Свій»; «Складна гра» вмикає хард-режим</span></figcaption>
+</figure><figure class="card" tabindex="0" data-route="gameSettingsDetails" data-label="Свій режим" data-note="Деталі всередині картки: чіпи, слайдери-пігулки, тумблери" data-src="shots/gameSettingsDetails.jpg">
+<div class="shot"><img src="shots/gameSettingsDetails.jpg" alt="Свій режим" loading="lazy"></div>
+<figcaption><b>Свій режим</b><span class="note">Деталі всередині картки: чіпи, слайдери-пігулки, тумблери</span></figcaption>
 </figure><figure class="card" tabindex="0" data-route="getReady" data-label="Готуйсь" data-note="«Почати гру» перед першим раундом" data-src="shots/getReady.jpg">
 <div class="shot"><img src="shots/getReady.jpg" alt="Готуйсь" loading="lazy"></div>
 <figcaption><b>Готуйсь</b><span class="note">«Почати гру» перед першим раундом</span></figcaption>
@@ -215,22 +218,28 @@ figcaption{cursor:zoom-in}
 </figure></div>
 </section><section class="flow" id="fB">
 <header class="fh">
-<div class="fh-top"><span class="code">B</span><h2>Кімната (кілька пристроїв)</h2><span class="count">16</span></div>
+<div class="fh-top"><span class="code">B</span><h2>Кімната (кілька пристроїв)</h2><span class="count">18</span></div>
 <p class="blurb">Мультиплеєр: організатор створює кімнату й показує код, гості заходять за ним і отримують ролі. Транспорт між пристроями поки мок — приєднання й старт раунду імітуються таймерами.</p>
 <p class="path">організатор: createRoom → сетап як у A  ·  гість: joinRoom → roomLobby → roomRole → roomGuessing</p>
 </header>
 <div class="grid-screens"><figure class="card" tabindex="0" data-route="createRoom" data-label="Створення кімнати" data-note="Код і QR" data-src="shots/createRoom.jpg">
 <div class="shot"><img src="shots/createRoom.jpg" alt="Створення кімнати" loading="lazy"></div>
 <figcaption><b>Створення кімнати</b><span class="note">Код і QR</span></figcaption>
-</figure><figure class="card" tabindex="0" data-route="joinRoom" data-label="Приєднання" data-note="Скан QR або ввід коду організатора" data-src="shots/joinRoom.jpg">
+</figure><figure class="card" tabindex="0" data-route="joinRoom" data-label="Приєднання" data-note="Код кімнати шістьма плитками; вставлене посилання теж читається" data-src="shots/joinRoom.jpg">
 <div class="shot"><img src="shots/joinRoom.jpg" alt="Приєднання" loading="lazy"></div>
-<figcaption><b>Приєднання</b><span class="note">Ввід коду організатора</span></figcaption>
-</figure><figure class="card" tabindex="0" data-route="scanQR" data-label="Сканування QR" data-note="Візир зі скобами; де камери немає — демо-код" data-src="shots/scanQR.jpg">
+<figcaption><b>Приєднання</b><span class="note">Код кімнати шістьма плитками; вставлене посилання теж читається</span></figcaption>
+</figure><figure class="card" tabindex="0" data-route="joinRoomFilled" data-label="Приєднання · набір" data-note="Шість плиток коду, каретка на активній" data-src="shots/joinRoomFilled.jpg">
+<div class="shot"><img src="shots/joinRoomFilled.jpg" alt="Приєднання · набір" loading="lazy"></div>
+<figcaption><b>Приєднання · набір</b><span class="note">Шість плиток коду, каретка на активній</span></figcaption>
+</figure><figure class="card" tabindex="0" data-route="joinRoomError" data-label="Приєднання · помилка" data-note="Кімнату не знайдено: червоні плитки, струс" data-src="shots/joinRoomError.jpg">
+<div class="shot"><img src="shots/joinRoomError.jpg" alt="Приєднання · помилка" loading="lazy"></div>
+<figcaption><b>Приєднання · помилка</b><span class="note">Кімнату не знайдено: червоні плитки, струс</span></figcaption>
+</figure><figure class="card" tabindex="0" data-route="scanQR" data-label="Сканування QR" data-note="Картка з градієнтною рамкою, стан у капсулі; без камери — демо-код" data-src="shots/scanQR.jpg">
 <div class="shot"><img src="shots/scanQR.jpg" alt="Сканування QR" loading="lazy"></div>
-<figcaption><b>Сканування QR</b><span class="note">Візир зі скобами; де камери немає — демо-код</span></figcaption>
-</figure><figure class="card" tabindex="0" data-route="scanQRFound" data-label="Код зчитано" data-note="Галочка, код і автоматичний вхід у лобі" data-src="shots/scanQRFound.jpg">
-<div class="shot"><img src="shots/scanQRFound.jpg" alt="Код зчитано" loading="lazy"></div>
-<figcaption><b>Код зчитано</b><span class="note">Галочка, код і автоматичний вхід у лобі</span></figcaption>
+<figcaption><b>Сканування QR</b><span class="note">Картка з градієнтною рамкою, стан у капсулі; без камери — демо-код</span></figcaption>
+</figure><figure class="card" tabindex="0" data-route="scanQRFound" data-label="QR зчитано" data-note="Зелені скоби, код плитками, автоперехід у лобі" data-src="shots/scanQRFound.jpg">
+<div class="shot"><img src="shots/scanQRFound.jpg" alt="QR зчитано" loading="lazy"></div>
+<figcaption><b>QR зчитано</b><span class="note">Зелені скоби, код плитками, автоперехід у лобі</span></figcaption>
 </figure><figure class="card" tabindex="0" data-route="joinRoomTest" data-label="Приєднання — ввід" data-note="Перевірка поля" data-src="shots/joinRoomTest.jpg">
 <div class="shot"><img src="shots/joinRoomTest.jpg" alt="Приєднання — ввід" loading="lazy"></div>
 <figcaption><b>Приєднання — ввід</b><span class="note">Перевірка поля</span></figcaption>
@@ -270,7 +279,7 @@ figcaption{cursor:zoom-in}
 </figure></div>
 </section><section class="flow" id="fC">
 <header class="fh">
-<div class="fh-top"><span class="code">C</span><h2>Ігровий цикл</h2><span class="count">14</span></div>
+<div class="fh-top"><span class="code">C</span><h2>Ігровий цикл</h2><span class="count">15</span></div>
 <p class="blurb">Серце застосунку. Цикл крутиться замінами верхнього екрана, тож стек не росте за десятки раундів і «назад» не веде в уже зарахований раунд. Очки нараховуються лише на підсумку по «Далі» — це дозволяє виправити спірні слова, не віднімаючи вже нараховані бали.</p>
 <p class="path">getReady → gameplay → roundResults → getReady / ranking / win</p>
 </header>
@@ -298,15 +307,18 @@ figcaption{cursor:zoom-in}
 </figure><figure class="card" tabindex="0" data-route="gameplayModal" data-label="Хто відгадав" data-note="Вибір команди" data-src="shots/gameplayModal.jpg">
 <div class="shot"><img src="shots/gameplayModal.jpg" alt="Хто відгадав" loading="lazy"></div>
 <figcaption><b>Хто відгадав</b><span class="note">Вибір команди</span></figcaption>
-</figure><figure class="card" tabindex="0" data-route="roundResults" data-label="Підсумок раунду" data-note="Зіркою міняється вердикт" data-src="shots/roundResults.jpg">
+</figure><figure class="card" tabindex="0" data-route="roundResults" data-label="Підсумок раунду" data-note="Зірка «зараховано», тап по слову розкриває значення" data-src="shots/roundResults.jpg">
 <div class="shot"><img src="shots/roundResults.jpg" alt="Підсумок раунду" loading="lazy"></div>
-<figcaption><b>Підсумок раунду</b><span class="note">Зіркою міняється вердикт</span></figcaption>
+<figcaption><b>Підсумок раунду</b><span class="note">Зірка «зараховано», тап по слову розкриває значення</span></figcaption>
 </figure><figure class="card" tabindex="0" data-route="roundResultsOpen" data-label="Слово розкрите" data-note="Пояснення під терміном" data-src="shots/roundResultsOpen.jpg">
 <div class="shot"><img src="shots/roundResultsOpen.jpg" alt="Слово розкрите" loading="lazy"></div>
 <figcaption><b>Слово розкрите</b><span class="note">Пояснення під терміном</span></figcaption>
 </figure><figure class="card" tabindex="0" data-route="roundResultsStop" data-label="Підсумок зі «Стоп»" data-note="Позначка біля знятого слова, зірка лишається тоглом" data-src="shots/roundResultsStop.jpg">
 <div class="shot"><img src="shots/roundResultsStop.jpg" alt="Підсумок зі «Стоп»" loading="lazy"></div>
 <figcaption><b>Підсумок зі «Стоп»</b><span class="note">Позначка біля знятого слова, зірка лишається тоглом</span></figcaption>
+</figure><figure class="card" tabindex="0" data-route="roundResultsGuest" data-label="Підсумок · гість кімнати" data-note="Зірки лише для читання — ставить той, хто пояснював" data-src="shots/roundResultsGuest.jpg">
+<div class="shot"><img src="shots/roundResultsGuest.jpg" alt="Підсумок · гість кімнати" loading="lazy"></div>
+<figcaption><b>Підсумок · гість кімнати</b><span class="note">Зірки лише для читання — ставить той, хто пояснював</span></figcaption>
 </figure><figure class="card" tabindex="0" data-route="ranking" data-label="Рейтинг — Top 3" data-note="Пʼєдестал після кола" data-src="shots/ranking.jpg">
 <div class="shot"><img src="shots/ranking.jpg" alt="Рейтинг — Top 3" loading="lazy"></div>
 <figcaption><b>Рейтинг — Top 3</b><span class="note">Пʼєдестал після кола</span></figcaption>
@@ -323,9 +335,9 @@ figcaption{cursor:zoom-in}
 <p class="blurb">Слова, збережені під час гри. Флешкартки збирають колоду лише з невивчених і фіксують її на вході. Якщо вивчено все — береться повний словник як режим повторення.</p>
 <p class="path">savedWords → savedWordCards</p>
 </header>
-<div class="grid-screens"><figure class="card" tabindex="0" data-route="savedWords" data-label="Словник" data-note="«+» у шапці — додати слова з історії ігор" data-src="shots/savedWords.jpg">
+<div class="grid-screens"><figure class="card" tabindex="0" data-route="savedWords" data-label="Словник" data-note="Темні плитки-підсумки, картки з корінцем стану" data-src="shots/savedWords.jpg">
 <div class="shot"><img src="shots/savedWords.jpg" alt="Словник" loading="lazy"></div>
-<figcaption><b>Словник</b><span class="note">Список, статистика, прогрес</span></figcaption>
+<figcaption><b>Словник</b><span class="note">Темні плитки-підсумки, картки з корінцем стану</span></figcaption>
 </figure><figure class="card" tabindex="0" data-route="savedWordsDue" data-label="Час повторити" data-note="Вивчене дозріло — чіп «Повторити»" data-src="shots/savedWordsDue.jpg">
 <div class="shot"><img src="shots/savedWordsDue.jpg" alt="Час повторити" loading="lazy"></div>
 <figcaption><b>Час повторити</b><span class="note">Вивчене дозріло — чіп «Повторити»</span></figcaption>
@@ -344,12 +356,12 @@ figcaption{cursor:zoom-in}
 </figure><figure class="card" tabindex="0" data-route="savedWordCardsDone" data-label="Усі слова вивчено" data-note="Колода порожня: додати слова або повторити всі" data-src="shots/savedWordCardsDone.jpg">
 <div class="shot"><img src="shots/savedWordCardsDone.jpg" alt="Усі слова вивчено" loading="lazy"></div>
 <figcaption><b>Усі слова вивчено</b><span class="note">Колода порожня: додати слова або повторити всі</span></figcaption>
-</figure><figure class="card" tabindex="0" data-route="addWords" data-label="Історія ігор" data-note="Стек аватарів із «+N» — картка однакова на 2 і на 6 командах" data-src="shots/addWords.jpg">
+</figure><figure class="card" tabindex="0" data-route="addWords" data-label="Історія ігор" data-note="Картки партій у мові словника: набори чіпами, переможець, стос команд" data-src="shots/addWords.jpg">
 <div class="shot"><img src="shots/addWords.jpg" alt="Історія ігор" loading="lazy"></div>
-<figcaption><b>Історія ігор</b><span class="note">Стек аватарів із «+N» — картка однакова на 2 і на 6 командах</span></figcaption>
-</figure><figure class="card" tabindex="0" data-route="playedGameWords" data-label="Слова гри" data-note="Рахунок усіх команд угорі, закладка в обидва боки" data-src="shots/playedGameWords.jpg">
-<div class="shot"><img src="shots/playedGameWords.jpg" alt="Слова гри" loading="lazy"></div>
-<figcaption><b>Слова гри</b><span class="note">Рахунок усіх команд угорі, закладка в обидва боки</span></figcaption>
+<figcaption><b>Історія ігор</b><span class="note">Картки партій у мові словника: набори чіпами, переможець, стос команд</span></figcaption>
+</figure><figure class="card" tabindex="0" data-route="playedGameWords" data-label="Слова партії" data-note="Корінець «не відгадали / відгадали», кнопка «Зберегти / Збережено»" data-src="shots/playedGameWords.jpg">
+<div class="shot"><img src="shots/playedGameWords.jpg" alt="Слова партії" loading="lazy"></div>
+<figcaption><b>Слова партії</b><span class="note">Корінець «не відгадали / відгадали», кнопка «Зберегти / Збережено»</span></figcaption>
 </figure><figure class="card" tabindex="0" data-route="playedGameWordsToast" data-label="Слово додано" data-note="Світла капсула в мові карток замість алерту" data-src="shots/playedGameWordsToast.jpg">
 <div class="shot"><img src="shots/playedGameWordsToast.jpg" alt="Слово додано" loading="lazy"></div>
 <figcaption><b>Слово додано</b><span class="note">Світла капсула в мові карток замість алерту</span></figcaption>
@@ -384,7 +396,7 @@ figcaption{cursor:zoom-in}
 </figure></div>
 </section><section class="flow" id="fF">
 <header class="fh">
-<div class="fh-top"><span class="code">F</span><h2>Службові екрани</h2><span class="count">10</span></div>
+<div class="fh-top"><span class="code">F</span><h2>Службові екрани</h2><span class="count">20</span></div>
 <p class="blurb">Поза ігровими флоу: запуск, головна в різних станах, правила, налаштування й каталог дизайн-системи для розробки.</p>
 <p class="path">launch → main · rules · appSettings</p>
 </header>
@@ -409,15 +421,45 @@ figcaption{cursor:zoom-in}
 </figure><figure class="card" tabindex="0" data-route="rulesSolo" data-label="Правила — одиночна" data-note="Окремий набір" data-src="shots/rulesSolo.jpg">
 <div class="shot"><img src="shots/rulesSolo.jpg" alt="Правила — одиночна" loading="lazy"></div>
 <figcaption><b>Правила — одиночна</b><span class="note">Окремий набір</span></figcaption>
-</figure><figure class="card" tabindex="0" data-route="appSettings" data-label="Налаштування" data-note="Мова, звук, вібрація, соцмережі" data-src="shots/appSettings.jpg">
-<div class="shot"><img src="shots/appSettings.jpg" alt="Налаштування" loading="lazy"></div>
-<figcaption><b>Налаштування</b><span class="note">Звук, вібрація, соцмережі</span></figcaption>
+</figure><figure class="card" tabindex="0" data-route="appSettings" data-label="Налаштування застосунку" data-note="Мова, звук, вібрація — нативні перемикачі" data-src="shots/appSettings.jpg">
+<div class="shot"><img src="shots/appSettings.jpg" alt="Налаштування застосунку" loading="lazy"></div>
+<figcaption><b>Налаштування застосунку</b><span class="note">Мова, звук, вібрація — нативні перемикачі</span></figcaption>
 </figure><figure class="card" tabindex="0" data-route="appSettingsLanguage" data-label="Вибір мови" data-note="Українська обрана, English — «скоро», без мертвого тогла" data-src="shots/appSettingsLanguage.jpg">
 <div class="shot"><img src="shots/appSettingsLanguage.jpg" alt="Вибір мови" loading="lazy"></div>
 <figcaption><b>Вибір мови</b><span class="note">Українська обрана, English — «скоро», без мертвого тогла</span></figcaption>
-</figure><figure class="card" tabindex="0" data-route="designSystem" data-label="Каталог ДС" data-note="10 вкладок з токенами" data-src="shots/designSystem.jpg">
-<div class="shot"><img src="shots/designSystem.jpg" alt="Каталог ДС" loading="lazy"></div>
-<figcaption><b>Каталог ДС</b><span class="note">10 вкладок з токенами</span></figcaption>
+</figure><figure class="card" tabindex="0" data-route="designSystem" data-label="Дизайн-система" data-note="Каталог компонентів, вкладка «Токени»; решта вкладок нижче" data-src="shots/designSystem.jpg">
+<div class="shot"><img src="shots/designSystem.jpg" alt="Дизайн-система" loading="lazy"></div>
+<figcaption><b>Дизайн-система</b><span class="note">Каталог компонентів, вкладка «Токени»; решта вкладок нижче</span></figcaption>
+</figure><figure class="card" tabindex="0" data-route="dsTypography" data-label="ДС · Текст" data-note="Усі стилі типографіки" data-src="shots/dsTypography.jpg">
+<div class="shot"><img src="shots/dsTypography.jpg" alt="ДС · Текст" loading="lazy"></div>
+<figcaption><b>ДС · Текст</b><span class="note">Усі стилі типографіки</span></figcaption>
+</figure><figure class="card" tabindex="0" data-route="dsColors" data-label="ДС · Кольори" data-note="Примітиви Figma і семантика" data-src="shots/dsColors.jpg">
+<div class="shot"><img src="shots/dsColors.jpg" alt="ДС · Кольори" loading="lazy"></div>
+<figcaption><b>ДС · Кольори</b><span class="note">Примітиви Figma і семантика</span></figcaption>
+</figure><figure class="card" tabindex="0" data-route="dsButtons" data-label="ДС · Кнопки" data-note="Типи, розміри, стани" data-src="shots/dsButtons.jpg">
+<div class="shot"><img src="shots/dsButtons.jpg" alt="ДС · Кнопки" loading="lazy"></div>
+<figcaption><b>ДС · Кнопки</b><span class="note">Типи, розміри, стани</span></figcaption>
+</figure><figure class="card" tabindex="0" data-route="dsControls" data-label="ДС · Контроли" data-note="Тумблери, чіпи, крокер, крапки" data-src="shots/dsControls.jpg">
+<div class="shot"><img src="shots/dsControls.jpg" alt="ДС · Контроли" loading="lazy"></div>
+<figcaption><b>ДС · Контроли</b><span class="note">Тумблери, чіпи, крокер, крапки</span></figcaption>
+</figure><figure class="card" tabindex="0" data-route="dsInputs" data-label="ДС · Поля" data-note="Стани поля вводу, код кімнати" data-src="shots/dsInputs.jpg">
+<div class="shot"><img src="shots/dsInputs.jpg" alt="ДС · Поля" loading="lazy"></div>
+<figcaption><b>ДС · Поля</b><span class="note">Стани поля вводу, код кімнати</span></figcaption>
+</figure><figure class="card" tabindex="0" data-route="dsCards" data-label="ДС · Картки" data-note="Сети, слова, режими" data-src="shots/dsCards.jpg">
+<div class="shot"><img src="shots/dsCards.jpg" alt="ДС · Картки" loading="lazy"></div>
+<figcaption><b>ДС · Картки</b><span class="note">Сети, слова, режими</span></figcaption>
+</figure><figure class="card" tabindex="0" data-route="dsSettings" data-label="ДС · Налаштування" data-note="Рядки, слайдери, режими гри" data-src="shots/dsSettings.jpg">
+<div class="shot"><img src="shots/dsSettings.jpg" alt="ДС · Налаштування" loading="lazy"></div>
+<figcaption><b>ДС · Налаштування</b><span class="note">Рядки, слайдери, режими гри</span></figcaption>
+</figure><figure class="card" tabindex="0" data-route="dsGame" data-label="ДС · Гра" data-note="Картка слова, табу, таймер" data-src="shots/dsGame.jpg">
+<div class="shot"><img src="shots/dsGame.jpg" alt="ДС · Гра" loading="lazy"></div>
+<figcaption><b>ДС · Гра</b><span class="note">Картка слова, табу, таймер</span></figcaption>
+</figure><figure class="card" tabindex="0" data-route="dsResults" data-label="ДС · Підсумки" data-note="Рядки слів, рейтинг, перемога" data-src="shots/dsResults.jpg">
+<div class="shot"><img src="shots/dsResults.jpg" alt="ДС · Підсумки" loading="lazy"></div>
+<figcaption><b>ДС · Підсумки</b><span class="note">Рядки слів, рейтинг, перемога</span></figcaption>
+</figure><figure class="card" tabindex="0" data-route="dsPaywall" data-label="ДС · Пейвол" data-note="Плани, бейджі, підписка" data-src="shots/dsPaywall.jpg">
+<div class="shot"><img src="shots/dsPaywall.jpg" alt="ДС · Пейвол" loading="lazy"></div>
+<figcaption><b>ДС · Пейвол</b><span class="note">Плани, бейджі, підписка</span></figcaption>
 </figure></div>
 </section>
 
