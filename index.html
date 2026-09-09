@@ -47,6 +47,10 @@ nav.ix a:hover,nav.ix a:focus-visible{color:var(--text);background:var(--raise)}
  font-size:clamp(17px,2.1vw,23px);letter-spacing:-.01em}
 .count{font-size:12.5px;color:var(--muted);font-variant-numeric:tabular-nums;
  background:var(--raise);border:1px solid var(--line);padding:3px 9px;border-radius:20px}
+.subhead{display:flex;align-items:baseline;gap:9px;margin:30px 0 15px}
+.subhead span{font-family:Unbounded,sans-serif;font-weight:500;font-size:15px;color:var(--text)}
+.subhead em{font-style:normal;font-size:13px;color:var(--muted)}
+.subhead::before{content:"";width:8px;height:8px;border-radius:3px;background:var(--accent);align-self:center}
 .blurb{margin:9px 0 0;color:var(--muted);font-size:14px;line-height:1.6;max-width:74ch}
 .path{margin:11px 0 0;font-family:ui-monospace,Menlo,monospace;font-size:11.5px;
  color:var(--accent);background:var(--raise);border:1px solid var(--line);
@@ -160,10 +164,10 @@ figcaption{cursor:zoom-in}
 <div class="wrap">
 <header class="mast">
 <h1>Флоу та екрани Marketium</h1>
-<p class="lede">Повна карта застосунку: шість користувацьких шляхів і усі 81 екран. Кожен екран — справжній роут, знятий із симулятора, а не мокап. Структура зчитана з коду: <code>Router</code>, <code>RootView</code> і всі переходи між екранами.</p>
+<p class="lede">Повна карта застосунку: шість користувацьких шляхів і усі 83 екрани. Кожен екран — справжній роут, знятий із симулятора, а не мокап. Структура зчитана з коду: <code>Router</code>, <code>RootView</code> і всі переходи між екранами.</p>
 <div class="grad"></div>
 <div class="meta">
-<span><b>81</b> екран</span><span><b>6</b> флоу</span>
+<span><b>83</b> екрани</span><span><b>6</b> флоу</span>
 <span>iPhone 17 Pro Max · 440×956</span><span>SwiftUI · iOS</span><span>знято 8 вересня 2026</span>
 </div>
 <div class="howto"><span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3h11A2.5 2.5 0 0 1 20 5.5v8a2.5 2.5 0 0 1-2.5 2.5H10l-4.2 3.6c-.7.6-1.8.1-1.8-.8V5.5Z" fill="currentColor"/><path d="M12 6.5v6M9 9.5h6" stroke="#fff" stroke-width="1.8" stroke-linecap="round"/></svg></span><div><b>Щоб лишити коментар — просто клікни на екран.</b><span>У тому місці зʼявиться пін і поле для тексту. Пиши, тисни «Надіслати» — коментар одразу потрапляє в таблицю команди. Без реєстрації.</span></div></div>
@@ -224,14 +228,38 @@ figcaption{cursor:zoom-in}
 </figure></div>
 </section><section class="flow" id="fB">
 <header class="fh">
-<div class="fh-top"><span class="code">B</span><h2>Кімната (кілька пристроїв)</h2><span class="count">23</span></div>
-<p class="blurb">Мультиплеєр: організатор створює кімнату й показує код, гості заходять за ним і отримують ролі. Транспорт між пристроями поки мок — приєднання й старт раунду імітуються таймерами.</p>
-<p class="path">організатор: createRoom → сетап як у A  ·  гість: joinRoom → roomLobby → roomRole → roomGuessing</p>
+<div class="fh-top"><span class="code">B</span><h2>Кімната (кілька пристроїв)</h2><span class="count">25</span></div>
+<p class="blurb">Мультиплеєр: організатор створює кімнату й показує код, гості заходять за ним і отримують ролі. Нижче потік поділено за пристроями — що бачить організатор і що бачить гість. Транспорт між пристроями поки мок — приєднання й старт раунду імітуються таймерами.</p>
+<p class="path">організатор: createRoom → сетап → старт  ·  гість: joinRoom → roomLobby → роль → раунд</p>
 </header>
-<div class="grid-screens"><figure class="card" tabindex="0" data-route="createRoom" data-label="Створення кімнати" data-note="Код і QR" data-src="shots/createRoom.jpg">
+<div class="subhead"><span>Організатор</span><em>телефон, що створив кімнату</em></div>
+<div class="grid-screens"><figure class="card" tabindex="0" data-route="playerNameHost" data-label="Твій нік · організатор" data-note="Перед створенням кімнати: порожнє поле, CTA «Створити кімнату» неактивна" data-src="shots/playerNameHost.jpg">
+<div class="shot"><img src="shots/playerNameHost.jpg" alt="Твій нік · організатор" loading="lazy"></div>
+<figcaption><b>Твій нік · організатор</b><span class="note">Перед створенням кімнати: порожнє поле, CTA «Створити кімнату» неактивна</span></figcaption>
+</figure><figure class="card" tabindex="0" data-route="createRoom" data-label="Створення кімнати" data-note="Код і QR для гостей" data-src="shots/createRoom.jpg">
 <div class="shot"><img src="shots/createRoom.jpg" alt="Створення кімнати" loading="lazy"></div>
-<figcaption><b>Створення кімнати</b><span class="note">Код і QR</span></figcaption>
-</figure><figure class="card" tabindex="0" data-route="joinRoom" data-label="Приєднання" data-note="Код кімнати шістьма плитками; вставлене посилання теж читається" data-src="shots/joinRoom.jpg">
+<figcaption><b>Створення кімнати</b><span class="note">Код і QR для гостей</span></figcaption>
+</figure><figure class="card" tabindex="0" data-route="createRoomClose" data-label="Закрити кімнату?" data-note="Організатор виходить із лобі до старту" data-src="shots/createRoomClose.jpg">
+<div class="shot"><img src="shots/createRoomClose.jpg" alt="Закрити кімнату?" loading="lazy"></div>
+<figcaption><b>Закрити кімнату?</b><span class="note">Організатор виходить із лобі до старту</span></figcaption>
+</figure><figure class="card" tabindex="0" data-route="gameModeRoomBig" data-label="Режим гри · кімната" data-note="Одиночний недоступний, коли гравців більше 3" data-src="shots/gameModeRoomBig.jpg">
+<div class="shot"><img src="shots/gameModeRoomBig.jpg" alt="Режим гри · кімната" loading="lazy"></div>
+<figcaption><b>Режим гри · кімната</b><span class="note">Одиночний недоступний, коли гравців більше 3</span></figcaption>
+</figure><figure class="card" tabindex="0" data-route="participantCountRoom" data-label="Учасники · кімната" data-note="Аватари гравців із лобі; лишається вибір кількості команд" data-src="shots/participantCountRoom.jpg">
+<div class="shot"><img src="shots/participantCountRoom.jpg" alt="Учасники · кімната" loading="lazy"></div>
+<figcaption><b>Учасники · кімната</b><span class="note">Аватари гравців із лобі; лишається вибір кількості команд</span></figcaption>
+</figure><figure class="card" tabindex="0" data-route="teamRoster" data-label="Команди · кімната" data-note="Хто в якій команді; гравців можна перетягувати між командами" data-src="shots/teamRoster.jpg">
+<div class="shot"><img src="shots/teamRoster.jpg" alt="Команди · кімната" loading="lazy"></div>
+<figcaption><b>Команди · кімната</b><span class="note">Хто в якій команді; гравців можна перетягувати між командами</span></figcaption>
+</figure><figure class="card" tabindex="0" data-route="roomRoleExplainer" data-label="Роль: пояснювач" data-note="Бачить слова, кнопка старту раунду" data-src="shots/roomRoleExplainer.jpg">
+<div class="shot"><img src="shots/roomRoleExplainer.jpg" alt="Роль: пояснювач" loading="lazy"></div>
+<figcaption><b>Роль: пояснювач</b><span class="note">Бачить слова, кнопка старту раунду</span></figcaption>
+</figure><figure class="card" tabindex="0" data-route="roomHostExit" data-label="Вихід організатора" data-note="Роль переходить наступному гравцю" data-src="shots/roomHostExit.jpg">
+<div class="shot"><img src="shots/roomHostExit.jpg" alt="Вихід організатора" loading="lazy"></div>
+<figcaption><b>Вихід організатора</b><span class="note">Роль переходить наступному гравцю</span></figcaption>
+</figure></div>
+<div class="subhead"><span>Гість / учасник</span><em>телефони, що приєдналися за кодом</em></div>
+<div class="grid-screens"><figure class="card" tabindex="0" data-route="joinRoom" data-label="Приєднання" data-note="Код кімнати шістьма плитками; вставлене посилання теж читається" data-src="shots/joinRoom.jpg">
 <div class="shot"><img src="shots/joinRoom.jpg" alt="Приєднання" loading="lazy"></div>
 <figcaption><b>Приєднання</b><span class="note">Код кімнати шістьма плитками; вставлене посилання теж читається</span></figcaption>
 </figure><figure class="card" tabindex="0" data-route="joinRoomFilled" data-label="Приєднання · набір" data-note="Шість плиток коду, каретка на активній" data-src="shots/joinRoomFilled.jpg">
@@ -240,61 +268,45 @@ figcaption{cursor:zoom-in}
 </figure><figure class="card" tabindex="0" data-route="joinRoomError" data-label="Приєднання · помилка" data-note="Кімнату не знайдено: червоні плитки, струс" data-src="shots/joinRoomError.jpg">
 <div class="shot"><img src="shots/joinRoomError.jpg" alt="Приєднання · помилка" loading="lazy"></div>
 <figcaption><b>Приєднання · помилка</b><span class="note">Кімнату не знайдено: червоні плитки, струс</span></figcaption>
-</figure><figure class="card" tabindex="0" data-route="playerName" data-label="Твій нік" data-note="Аватар і нік перед лобі — як у Kahoot; після коду, QR і перед створенням кімнати" data-src="shots/playerName.jpg">
-<div class="shot"><img src="shots/playerName.jpg" alt="Твій нік" loading="lazy"></div>
-<figcaption><b>Твій нік</b><span class="note">Аватар і нік перед лобі — як у Kahoot; після коду, QR і перед створенням кімнати</span></figcaption>
-</figure><figure class="card" tabindex="0" data-route="playerNameFilled" data-label="Твій нік · заповнено" data-note="Минулий нік підставлено, аватар обрано" data-src="shots/playerNameFilled.jpg">
-<div class="shot"><img src="shots/playerNameFilled.jpg" alt="Твій нік · заповнено" loading="lazy"></div>
-<figcaption><b>Твій нік · заповнено</b><span class="note">Минулий нік підставлено, аватар обрано</span></figcaption>
-</figure>
-<figure class="card" tabindex="0" data-route="playerNameHost" data-label="Твій нік · організатор" data-note="Той самий екран перед створенням кімнати: порожнє поле, CTA «Створити кімнату» неактивна" data-src="shots/playerNameHost.jpg">
-<div class="shot"><img src="shots/playerNameHost.jpg" alt="Твій нік · організатор" loading="lazy"></div>
-<figcaption><b>Твій нік · організатор</b><span class="note">Той самий екран перед створенням кімнати: порожнє поле, CTA «Створити кімнату» неактивна</span></figcaption>
 </figure><figure class="card" tabindex="0" data-route="scanQR" data-label="Сканування QR" data-note="Картка з градієнтною рамкою, стан у капсулі; без камери — демо-код" data-src="shots/scanQR.jpg">
 <div class="shot"><img src="shots/scanQR.jpg" alt="Сканування QR" loading="lazy"></div>
 <figcaption><b>Сканування QR</b><span class="note">Картка з градієнтною рамкою, стан у капсулі; без камери — демо-код</span></figcaption>
 </figure><figure class="card" tabindex="0" data-route="scanQRFound" data-label="QR зчитано" data-note="Зелені скоби, код плитками, далі — нік" data-src="shots/scanQRFound.jpg">
 <div class="shot"><img src="shots/scanQRFound.jpg" alt="QR зчитано" loading="lazy"></div>
 <figcaption><b>QR зчитано</b><span class="note">Зелені скоби, код плитками, далі — нік</span></figcaption>
+</figure><figure class="card" tabindex="0" data-route="playerName" data-label="Твій нік" data-note="Аватар і нік перед лобі — як у Kahoot" data-src="shots/playerName.jpg">
+<div class="shot"><img src="shots/playerName.jpg" alt="Твій нік" loading="lazy"></div>
+<figcaption><b>Твій нік</b><span class="note">Аватар і нік перед лобі — як у Kahoot</span></figcaption>
+</figure><figure class="card" tabindex="0" data-route="playerNameFilled" data-label="Твій нік · заповнено" data-note="Минулий нік підставлено, аватар обрано" data-src="shots/playerNameFilled.jpg">
+<div class="shot"><img src="shots/playerNameFilled.jpg" alt="Твій нік · заповнено" loading="lazy"></div>
+<figcaption><b>Твій нік · заповнено</b><span class="note">Минулий нік підставлено, аватар обрано</span></figcaption>
 </figure><figure class="card" tabindex="0" data-route="roomLobby" data-label="Лобі гостя" data-note="Дзеркало екрана організатора: аватар у кільці замість QR, код і список учасників" data-src="shots/roomLobby.jpg">
 <div class="shot"><img src="shots/roomLobby.jpg" alt="Лобі гостя" loading="lazy"></div>
 <figcaption><b>Лобі гостя</b><span class="note">Дзеркало екрана організатора: аватар у кільці замість QR, код і список учасників</span></figcaption>
-</figure><figure class="card" tabindex="0" data-route="gameModeRoomBig" data-label="Режим гри · кімната" data-note="Одиночний недоступний, коли в кімнаті більше 3 гравців" data-src="shots/gameModeRoomBig.jpg">
-<div class="shot"><img src="shots/gameModeRoomBig.jpg" alt="Режим гри · кімната" loading="lazy"></div>
-<figcaption><b>Режим гри · кімната</b><span class="note">Одиночний недоступний, коли в кімнаті більше 3 гравців</span></figcaption>
-</figure><figure class="card" tabindex="0" data-route="participantCountRoom" data-label="Учасники · кімната" data-note="Аватари гравців із лобі; лишається вибір кількості команд" data-src="shots/participantCountRoom.jpg">
-<div class="shot"><img src="shots/participantCountRoom.jpg" alt="Учасники · кімната" loading="lazy"></div>
-<figcaption><b>Учасники · кімната</b><span class="note">Аватари гравців із лобі; лишається вибір кількості команд</span></figcaption>
-</figure><figure class="card" tabindex="0" data-route="teamRoster" data-label="Команди · кімната" data-note="Хто в якій команді; гравців можна перетягувати між командами" data-src="shots/teamRoster.jpg">
-<div class="shot"><img src="shots/teamRoster.jpg" alt="Команди · кімната" loading="lazy"></div>
-<figcaption><b>Команди · кімната</b><span class="note">Хто в якій команді; гравців можна перетягувати між командами</span></figcaption>
-</figure><figure class="card" tabindex="0" data-route="createRoomClose" data-label="Закрити кімнату?" data-note="Організатор виходить із лобі" data-src="shots/createRoomClose.jpg">
-<div class="shot"><img src="shots/createRoomClose.jpg" alt="Закрити кімнату?" loading="lazy"></div>
-<figcaption><b>Закрити кімнату?</b><span class="note">Організатор виходить із лобі</span></figcaption>
-</figure><figure class="card" tabindex="0" data-route="roomClosed" data-label="Кімнату закрито" data-note="Гість: організатор вийшов до старту" data-src="shots/roomClosed.jpg">
+</figure><figure class="card" tabindex="0" data-route="roomClosed" data-label="Кімнату закрито" data-note="Організатор вийшов до старту" data-src="shots/roomClosed.jpg">
 <div class="shot"><img src="shots/roomClosed.jpg" alt="Кімнату закрито" loading="lazy"></div>
-<figcaption><b>Кімнату закрито</b><span class="note">Гість: організатор вийшов до старту</span></figcaption>
-</figure><figure class="card" tabindex="0" data-route="roomRole" data-label="Роль: відгадувач" data-note="Слова бачить лише пояснювач" data-src="shots/roomRole.jpg">
+<figcaption><b>Кімнату закрито</b><span class="note">Організатор вийшов до старту</span></figcaption>
+</figure><figure class="card" tabindex="0" data-route="roomRole" data-label="Роль: відгадувач" data-note="Слухає й вигукує; слова бачить лише пояснювач" data-src="shots/roomRole.jpg">
 <div class="shot"><img src="shots/roomRole.jpg" alt="Роль: відгадувач" loading="lazy"></div>
-<figcaption><b>Роль: відгадувач</b><span class="note">Слова бачить лише пояснювач</span></figcaption>
-</figure><figure class="card" tabindex="0" data-route="roomRoleExplainer" data-label="Роль: пояснювач" data-note="Кнопка старту раунду" data-src="shots/roomRoleExplainer.jpg">
-<div class="shot"><img src="shots/roomRoleExplainer.jpg" alt="Роль: пояснювач" loading="lazy"></div>
-<figcaption><b>Роль: пояснювач</b><span class="note">Кнопка старту раунду</span></figcaption>
-</figure><figure class="card" tabindex="0" data-route="roomGuessing" data-label="Раунд у гостя" data-note="Картка з привидами слова й еквалайзер — дзеркало хард-режиму" data-src="shots/roomGuessing.jpg">
+<figcaption><b>Роль: відгадувач</b><span class="note">Слухає й вигукує; слова бачить лише пояснювач</span></figcaption>
+</figure><figure class="card" tabindex="0" data-route="roomRoleWatch" data-label="Роль: стоп-слова" data-note="Суперник у хард-режимі: перед раундом слідкує за забороненими словами" data-src="shots/roomRoleWatch.jpg">
+<div class="shot"><img src="shots/roomRoleWatch.jpg" alt="Роль: стоп-слова" loading="lazy"></div>
+<figcaption><b>Роль: стоп-слова</b><span class="note">Суперник у хард-режимі: перед раундом слідкує за забороненими словами</span></figcaption>
+</figure><figure class="card" tabindex="0" data-route="roomGuessing" data-label="Раунд у гостя" data-note="Слово сховане, еквалайзер «слухаємо»" data-src="shots/roomGuessing.jpg">
 <div class="shot"><img src="shots/roomGuessing.jpg" alt="Раунд у гостя" loading="lazy"></div>
-<figcaption><b>Раунд у гостя</b><span class="note">Картка з привидами слова й еквалайзер — дзеркало хард-режиму</span></figcaption>
-</figure><figure class="card" tabindex="0" data-route="roomGuessingExit" data-label="Вихід із кімнати" data-note="Таймер на паузі" data-src="shots/roomGuessingExit.jpg">
-<div class="shot"><img src="shots/roomGuessingExit.jpg" alt="Вихід із кімнати" loading="lazy"></div>
-<figcaption><b>Вихід із кімнати</b><span class="note">Таймер на паузі</span></figcaption>
+<figcaption><b>Раунд у гостя</b><span class="note">Слово сховане, еквалайзер «слухаємо»</span></figcaption>
+</figure><figure class="card" tabindex="0" data-route="roomGuessingWait" data-label="Раунд суперника" data-note="Грає інша команда — чекай свій раунд" data-src="shots/roomGuessingWait.jpg">
+<div class="shot"><img src="shots/roomGuessingWait.jpg" alt="Раунд суперника" loading="lazy"></div>
+<figcaption><b>Раунд суперника</b><span class="note">Грає інша команда — чекай свій раунд</span></figcaption>
 </figure><figure class="card" tabindex="0" data-route="roomGuessingHard" data-label="Хард-режим — суперники" data-note="Список «не можна» без терміна і кнопка «Стоп»" data-src="shots/roomGuessingHard.jpg">
 <div class="shot"><img src="shots/roomGuessingHard.jpg" alt="Хард-режим — суперники" loading="lazy"></div>
 <figcaption><b>Хард-режим — суперники</b><span class="note">Список «не можна» без терміна і кнопка «Стоп»</span></figcaption>
 </figure><figure class="card" tabindex="0" data-route="roomGuessingStop" data-label="«Стоп» натиснуто" data-note="Вспишка, слово знято як пропуск" data-src="shots/roomGuessingStop.jpg">
 <div class="shot"><img src="shots/roomGuessingStop.jpg" alt="«Стоп» натиснуто" loading="lazy"></div>
 <figcaption><b>«Стоп» натиснуто</b><span class="note">Вспишка, слово знято як пропуск</span></figcaption>
-</figure><figure class="card" tabindex="0" data-route="roomHostExit" data-label="Вихід організатора" data-note="Роль переходить наступному" data-src="shots/roomHostExit.jpg">
-<div class="shot"><img src="shots/roomHostExit.jpg" alt="Вихід організатора" loading="lazy"></div>
-<figcaption><b>Вихід організатора</b><span class="note">Роль переходить наступному</span></figcaption>
+</figure><figure class="card" tabindex="0" data-route="roomGuessingExit" data-label="Вихід із кімнати" data-note="Таймер на паузі" data-src="shots/roomGuessingExit.jpg">
+<div class="shot"><img src="shots/roomGuessingExit.jpg" alt="Вихід із кімнати" loading="lazy"></div>
+<figcaption><b>Вихід із кімнати</b><span class="note">Таймер на паузі</span></figcaption>
 </figure><figure class="card" tabindex="0" data-route="roomHostLost" data-label="Організатор відключився" data-note="Пауза 30 с до передачі ролі" data-src="shots/roomHostLost.jpg">
 <div class="shot"><img src="shots/roomHostLost.jpg" alt="Організатор відключився" loading="lazy"></div>
 <figcaption><b>Організатор відключився</b><span class="note">Пауза 30 с до передачі ролі</span></figcaption>
