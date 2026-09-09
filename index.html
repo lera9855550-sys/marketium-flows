@@ -160,10 +160,10 @@ figcaption{cursor:zoom-in}
 <div class="wrap">
 <header class="mast">
 <h1>Флоу та екрани Marketium</h1>
-<p class="lede">Повна карта застосунку: шість користувацьких шляхів і усі 78 екранів. Кожен екран — справжній роут, знятий із симулятора, а не мокап. Структура зчитана з коду: <code>Router</code>, <code>RootView</code> і всі переходи між екранами.</p>
+<p class="lede">Повна карта застосунку: шість користувацьких шляхів і усі 81 екран. Кожен екран — справжній роут, знятий із симулятора, а не мокап. Структура зчитана з коду: <code>Router</code>, <code>RootView</code> і всі переходи між екранами.</p>
 <div class="grad"></div>
 <div class="meta">
-<span><b>78</b> екранів</span><span><b>6</b> флоу</span>
+<span><b>81</b> екран</span><span><b>6</b> флоу</span>
 <span>iPhone 17 Pro Max · 440×956</span><span>SwiftUI · iOS</span><span>знято 8 вересня 2026</span>
 </div>
 <div class="howto"><span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3h11A2.5 2.5 0 0 1 20 5.5v8a2.5 2.5 0 0 1-2.5 2.5H10l-4.2 3.6c-.7.6-1.8.1-1.8-.8V5.5Z" fill="currentColor"/><path d="M12 6.5v6M9 9.5h6" stroke="#fff" stroke-width="1.8" stroke-linecap="round"/></svg></span><div><b>Щоб лишити коментар — просто клікни на екран.</b><span>У тому місці зʼявиться пін і поле для тексту. Пиши, тисни «Надіслати» — коментар одразу потрапляє в таблицю команди. Без реєстрації.</span></div></div>
@@ -224,7 +224,7 @@ figcaption{cursor:zoom-in}
 </figure></div>
 </section><section class="flow" id="fB">
 <header class="fh">
-<div class="fh-top"><span class="code">B</span><h2>Кімната (кілька пристроїв)</h2><span class="count">20</span></div>
+<div class="fh-top"><span class="code">B</span><h2>Кімната (кілька пристроїв)</h2><span class="count">23</span></div>
 <p class="blurb">Мультиплеєр: організатор створює кімнату й показує код, гості заходять за ним і отримують ролі. Транспорт між пристроями поки мок — приєднання й старт раунду імітуються таймерами.</p>
 <p class="path">організатор: createRoom → сетап як у A  ·  гість: joinRoom → roomLobby → roomRole → roomGuessing</p>
 </header>
@@ -259,6 +259,15 @@ figcaption{cursor:zoom-in}
 </figure><figure class="card" tabindex="0" data-route="roomLobby" data-label="Лобі гостя" data-note="Дзеркало екрана організатора: аватар у кільці замість QR, код і список учасників" data-src="shots/roomLobby.jpg">
 <div class="shot"><img src="shots/roomLobby.jpg" alt="Лобі гостя" loading="lazy"></div>
 <figcaption><b>Лобі гостя</b><span class="note">Дзеркало екрана організатора: аватар у кільці замість QR, код і список учасників</span></figcaption>
+</figure><figure class="card" tabindex="0" data-route="gameModeRoomBig" data-label="Режим гри · кімната" data-note="Одиночний недоступний, коли в кімнаті більше 3 гравців" data-src="shots/gameModeRoomBig.jpg">
+<div class="shot"><img src="shots/gameModeRoomBig.jpg" alt="Режим гри · кімната" loading="lazy"></div>
+<figcaption><b>Режим гри · кімната</b><span class="note">Одиночний недоступний, коли в кімнаті більше 3 гравців</span></figcaption>
+</figure><figure class="card" tabindex="0" data-route="participantCountRoom" data-label="Учасники · кімната" data-note="Аватари гравців із лобі; лишається вибір кількості команд" data-src="shots/participantCountRoom.jpg">
+<div class="shot"><img src="shots/participantCountRoom.jpg" alt="Учасники · кімната" loading="lazy"></div>
+<figcaption><b>Учасники · кімната</b><span class="note">Аватари гравців із лобі; лишається вибір кількості команд</span></figcaption>
+</figure><figure class="card" tabindex="0" data-route="teamRoster" data-label="Команди · кімната" data-note="Хто в якій команді; гравців можна перетягувати між командами" data-src="shots/teamRoster.jpg">
+<div class="shot"><img src="shots/teamRoster.jpg" alt="Команди · кімната" loading="lazy"></div>
+<figcaption><b>Команди · кімната</b><span class="note">Хто в якій команді; гравців можна перетягувати між командами</span></figcaption>
 </figure><figure class="card" tabindex="0" data-route="createRoomClose" data-label="Закрити кімнату?" data-note="Організатор виходить із лобі" data-src="shots/createRoomClose.jpg">
 <div class="shot"><img src="shots/createRoomClose.jpg" alt="Закрити кімнату?" loading="lazy"></div>
 <figcaption><b>Закрити кімнату?</b><span class="note">Організатор виходить із лобі</span></figcaption>
