@@ -11,7 +11,7 @@
 :root{
  --bg:#0E0F12;--side:#141519;--panel:#1A1C21;--line:#26282F;--line2:#33363F;
  --text:#F2F3F5;--muted:#8D92A0;--dim:#5E6370;--accent:#1B67F5;--accent2:#4C8DFF;
- --w:260px;--r:26px;--side-w:300px;--bar:60px;
+ --w:230px;--r:26px;--side-w:300px;--bar:60px;
  --ui:"Exo 2",system-ui,-apple-system,sans-serif;--display:"Unbounded",var(--ui);
 }
 *{box-sizing:border-box}
@@ -53,8 +53,8 @@ main{margin-left:var(--side-w);padding:calc(var(--bar) + 28px) 0 120px}
 .sechead span{color:var(--muted);font-size:14px}
 .flow{padding:18px 0 34px;scroll-margin-top:calc(var(--bar) + 10px)}
 .rowwrap{position:relative}
-.row{display:flex;gap:24px;overflow-x:auto;padding:6px 40px 14px;scroll-snap-type:x proximity;scroll-padding:40px;scrollbar-width:thin;scrollbar-color:var(--line2) transparent}
-.shot{flex:none;width:var(--w);scroll-snap-align:start;cursor:zoom-in}
+.row{display:flex;gap:20px;overflow-x:auto;padding:6px 40px 14px;scroll-snap-type:x proximity;scroll-padding:40px;scrollbar-width:thin;scrollbar-color:var(--line2) transparent}
+.shot{flex:none;margin:0;width:var(--w);scroll-snap-align:start;cursor:zoom-in}
 .shot .im{position:relative;border-radius:var(--r);overflow:hidden;background:#000;aspect-ratio:1080/2348;box-shadow:0 0 0 1px var(--line)}
 .shot img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .2s}
 .shot:hover img{transform:scale(1.015)}
@@ -67,7 +67,7 @@ main{margin-left:var(--side-w);padding:calc(var(--bar) + 28px) 0 120px}
 .rowwrap:hover .arrow{opacity:1}
 .arrow.l{left:18px}.arrow.r{right:18px}
 .arrow[hidden]{display:none}
-.flowcap{padding:4px 40px 0;display:flex;align-items:baseline;gap:14px;flex-wrap:wrap}
+.flowcap{padding:12px 40px 0;display:flex;align-items:baseline;gap:14px;flex-wrap:wrap}
 .flowcap h3{margin:0;font-family:var(--display);font-weight:500;font-size:20px}
 .flowcap span{color:var(--muted);font-size:15px}
 .flowcap button{margin-left:auto;font-size:13px;color:var(--muted);padding:6px 12px;border:1px solid var(--line2);border-radius:18px}
@@ -137,7 +137,6 @@ body.canvas .canvashint{display:block}
  <div class="brand"><b>Marketium</b><span id="meta"></span></div>
  <label class="search"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="7" cy="7" r="4.5"/><path d="M10.5 10.5 14 14"/></svg><input id="q" placeholder="Екран, флоу, роут…" autocomplete="off"><kbd class="hidem">/</kbd></label>
  <div class="sp"></div>
- <div class="seg hidem" id="sizes" aria-label="Розмір екранів"><button data-w="200">S</button><button data-w="260">M</button><button data-w="340">L</button><button data-w="420">XL</button></div>
  <div class="seg" id="modes"><button data-m="rows" class="on">Стрічки</button><button data-m="canvas">Полотно</button></div>
 </header>
 <nav class="side" id="side"></nav>
@@ -181,7 +180,7 @@ function render(){
   board+=`<div class="secgrp"><div class="sechead" id="${sec.id}"><h2>${sec.title}</h2><span>${cnt} ${plural(cnt)}</span></div>`;
   flows.forEach(x=>{
    board+=`<section class="flow" id="${x.f.id}"><div class="rowwrap"><button class="arrow l" aria-label="Назад">←</button><div class="row">`+
-    x.items.map(s=>`<figure class="shot" data-route="${s.route}"><div class="im"><img src="shots/${s.route}.jpg?v=2609220924" alt="${s.label}" loading="lazy" draggable="false"><i class="pinc"></i></div><figcaption class="cap"><b>${s.label}</b><span>${s.note}</span></figcaption></figure>`).join('')+
+    x.items.map(s=>`<figure class="shot" data-route="${s.route}"><div class="im"><img src="shots/${s.route}.jpg?v=2609220928" alt="${s.label}" loading="lazy" draggable="false"><i class="pinc"></i></div><figcaption class="cap"><b>${s.label}</b><span>${s.note}</span></figcaption></figure>`).join('')+
     `</div><button class="arrow r" aria-label="Далі">→</button></div><div class="flowcap"><h3>${x.f.title}</h3><span>${x.items.length} ${plural(x.items.length)}</span><button data-cflow="${x.f.id}">Коментувати флоу</button></div></section>`;
   });
   board+=`</div>`;
@@ -211,9 +210,7 @@ let io;function spy(){io&&io.disconnect();io=new IntersectionObserver(es=>{es.fo
  document.querySelectorAll('.flow').forEach(f=>io.observe(f));}
 function pinCounts(){const p=loadPins();document.querySelectorAll('.shot').forEach(s=>{const n=p.filter(x=>x.route===s.dataset.route).length,i=s.querySelector('.pinc');i.textContent=n;i.classList.toggle('on',n>0)})}
 /* ---- sizes ---- */
-function setW(w){document.documentElement.style.setProperty('--w',w+'px');document.querySelectorAll('#sizes button').forEach(b=>b.classList.toggle('on',+b.dataset.w===w));try{localStorage.setItem('mk.w2',w)}catch(e){}}
-document.querySelectorAll('#sizes button').forEach(b=>b.onclick=()=>setW(+b.dataset.w));
-let w0=260;try{w0=+localStorage.getItem('mk.w2')||260}catch(e){}setW(innerWidth<900?200:w0);
+
 /* ---- canvas mode (Figma-like) ---- */
 const cam={x:0,y:0,z:.5};
 function applyCam(){$('#board').style.transform=`translate(${cam.x}px,${cam.y}px) scale(${cam.z})`;$('#zval').textContent=Math.round(cam.z*100)+'%'}
@@ -241,9 +238,9 @@ function vFit(){const W=vs.clientWidth,H=vs.clientHeight;V.fitz=Math.min(W/IW,(H
 function v100(){const W=vs.clientWidth,H=vs.clientHeight;const cx=W/2,cy=H/2;vZoomAt(1/V.z*.5,cx,cy)}
 function vZoomAt(f,cx,cy){const nz=Math.min(3,Math.max(V.fitz*.5,V.z*f));const k=nz/V.z;V.x=cx-(cx-V.x)*k;V.y=cy-(cy-V.y)*k;V.z=nz;vApply()}
 function openViewer(route){const k=all.findIndex(a=>a.route===route);if(k<0)return;V.i=k;$('#viewer').classList.add('on');document.body.style.overflow='hidden';showV();}
-function showV(){const s=all[V.i];vi.src='shots/'+s.route+'.jpg?v=2609220924';
+function showV(){const s=all[V.i];vi.src='shots/'+s.route+'.jpg?v=2609220928';
  $('#vt').innerHTML=`<b>${s.label}</b><span>${s.flow.title} · ${s.note}</span><code>${s.route}</code>`;
- const fl=all.filter(a=>a.flow===s.flow);$('#strip').innerHTML=fl.map(a=>`<button data-r="${a.route}" class="${a===s?'on':''}" title="${a.label}"><img src="shots/${a.route}.jpg?v=2609220924" loading="lazy" alt=""></button>`).join('');
+ const fl=all.filter(a=>a.flow===s.flow);$('#strip').innerHTML=fl.map(a=>`<button data-r="${a.route}" class="${a===s?'on':''}" title="${a.label}"><img src="shots/${a.route}.jpg?v=2609220928" loading="lazy" alt=""></button>`).join('');
  $('#strip').querySelectorAll('button').forEach(b=>b.onclick=()=>openViewer(b.dataset.r));
  $('#strip .on')?.scrollIntoView({inline:'center',block:'nearest'});
  vimg.querySelectorAll('.pin,.pop').forEach(n=>n.remove());
