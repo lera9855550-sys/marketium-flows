@@ -180,7 +180,7 @@ function render(){
   board+=`<div class="secgrp"><div class="sechead" id="${sec.id}"><h2>${sec.title}</h2><span>${cnt} ${plural(cnt)}</span></div>`;
   flows.forEach(x=>{
    board+=`<section class="flow" id="${x.f.id}"><div class="rowwrap"><button class="arrow l" aria-label="Назад">←</button><div class="row">`+
-    x.items.map(s=>`<figure class="shot" data-route="${s.route}"><div class="im"><img src="shots/${s.route}.jpg?v=2609220928" alt="${s.label}" loading="lazy" draggable="false"><i class="pinc"></i></div><figcaption class="cap"><b>${s.label}</b><span>${s.note}</span></figcaption></figure>`).join('')+
+    x.items.map(s=>`<figure class="shot" data-route="${s.route}"><div class="im"><img src="shots/${s.route}.jpg?v=2609221138" alt="${s.label}" loading="lazy" draggable="false"><i class="pinc"></i></div><figcaption class="cap"><b>${s.label}</b><span>${s.note}</span></figcaption></figure>`).join('')+
     `</div><button class="arrow r" aria-label="Далі">→</button></div><div class="flowcap"><h3>${x.f.title}</h3><span>${x.items.length} ${plural(x.items.length)}</span><button data-cflow="${x.f.id}">Коментувати флоу</button></div></section>`;
   });
   board+=`</div>`;
@@ -238,9 +238,9 @@ function vFit(){const W=vs.clientWidth,H=vs.clientHeight;V.fitz=Math.min(W/IW,(H
 function v100(){const W=vs.clientWidth,H=vs.clientHeight;const cx=W/2,cy=H/2;vZoomAt(1/V.z*.5,cx,cy)}
 function vZoomAt(f,cx,cy){const nz=Math.min(3,Math.max(V.fitz*.5,V.z*f));const k=nz/V.z;V.x=cx-(cx-V.x)*k;V.y=cy-(cy-V.y)*k;V.z=nz;vApply()}
 function openViewer(route){const k=all.findIndex(a=>a.route===route);if(k<0)return;V.i=k;$('#viewer').classList.add('on');document.body.style.overflow='hidden';showV();}
-function showV(){const s=all[V.i];vi.src='shots/'+s.route+'.jpg?v=2609220928';
+function showV(){const s=all[V.i];vi.src='shots/'+s.route+'.jpg?v=2609221138';
  $('#vt').innerHTML=`<b>${s.label}</b><span>${s.flow.title} · ${s.note}</span><code>${s.route}</code>`;
- const fl=all.filter(a=>a.flow===s.flow);$('#strip').innerHTML=fl.map(a=>`<button data-r="${a.route}" class="${a===s?'on':''}" title="${a.label}"><img src="shots/${a.route}.jpg?v=2609220928" loading="lazy" alt=""></button>`).join('');
+ const fl=all.filter(a=>a.flow===s.flow);$('#strip').innerHTML=fl.map(a=>`<button data-r="${a.route}" class="${a===s?'on':''}" title="${a.label}"><img src="shots/${a.route}.jpg?v=2609221138" loading="lazy" alt=""></button>`).join('');
  $('#strip').querySelectorAll('button').forEach(b=>b.onclick=()=>openViewer(b.dataset.r));
  $('#strip .on')?.scrollIntoView({inline:'center',block:'nearest'});
  vimg.querySelectorAll('.pin,.pop').forEach(n=>n.remove());
